@@ -2,6 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faUserSecret,
+  faAmbulance,
+  faAnchor,
+} from "@fortawesome/free-solid-svg-icons";
+
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -19,6 +26,8 @@ const Home: NextPage = () => {
         </h1>
 
         <p className="mt-3 text-2xl">
+          <FontAwesomeIcon icon={faUserSecret} />
+
           Get started by editing{' '}
           <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
             pages/index.tsx
