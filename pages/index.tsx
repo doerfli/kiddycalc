@@ -8,6 +8,7 @@ import {
   faAmbulance,
   faAnchor,
 } from "@fortawesome/free-solid-svg-icons";
+import Game from '../components/game';
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,8 @@ const Home: NextPage = () => {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Game />
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
