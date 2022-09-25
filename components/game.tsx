@@ -10,10 +10,11 @@ const Challenge = dynamic(
 export default function Game() {
     const [ number1, setNumber1 ] = useState(Math.ceil(Math.random() * 5));
     const [ number2, setNumber2 ] = useState(Math.ceil(Math.random() * 5));
+    const [ result, setResult ] = useState(number1 + number2);
 
     return (
         <div className="game">
-            <Challenge number1={number1} number2={number2} />
+            <Challenge number1={number1} number2={number2} result={result} />
         </div>
     );
 }
