@@ -31,13 +31,13 @@ export default function Challenge(props: ChallengeProps) {
                 <Number number={number1} />
             </div>
             <div className="float-left px-4 text-lg align-middle">
-                <p className="text-6xl">+</p>
+            <FontAwesomeIcon icon="plus" className="text-5xl" />
             </div>
             <div className="float-left px-4">
                 <Number number={number2} />
             </div>
             <div className="float-left px-4">
-                <p className="text-6xl">=</p>
+                <FontAwesomeIcon icon="equals" className="text-5xl" />
             </div>
             <div className="float-left px-4">
                 <ResultSelector result={result} />
