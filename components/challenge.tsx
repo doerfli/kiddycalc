@@ -9,8 +9,8 @@ const Number = dynamic(
     { ssr: false }
 )
 
-const ResultChooser = dynamic(
-    () => import('./result_chooser'),
+const ResultSelector = dynamic(
+    () => import('./result_selector'),
     { ssr: false }
 )
 
@@ -40,7 +40,7 @@ export default function Challenge(props: ChallengeProps) {
                 <p className="text-6xl">=</p>
             </div>
             <div className="float-left px-4">
-                <ResultChooser result={result} />
+                <ResultSelector result={result} />
             </div>
         </div>
     );
