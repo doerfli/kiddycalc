@@ -1,14 +1,9 @@
 import React, { useState }  from "react";
-// import Number from "./number";
 import dynamic from 'next/dynamic'
 
-import {
-    faCar,
-} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-// TODO make ssr work again
 const Number = dynamic(
     () => import('./number'),
     { ssr: false }
@@ -39,7 +34,7 @@ export default function Challenge(props: ChallengeProps) {
             </div>
             <div className="float-left px-4">
                 <span className="text-6xl">?&nbsp;</span>
-                <FontAwesomeIcon className="text-6xl" icon={faCar} />
+                <FontAwesomeIcon className="text-6xl" icon="car" />
             </div>            
         </div>
     );

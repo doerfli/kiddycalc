@@ -1,5 +1,11 @@
 import React, { useState }  from "react";
-import Challenge from "./challenge";
+import dynamic from 'next/dynamic'
+
+const Challenge = dynamic(
+    () => import('./challenge'),
+    { ssr: false }
+)
+
 
 export default function Game() {
     const [ number1, setNumber1 ] = useState(Math.ceil(Math.random() * 5));
