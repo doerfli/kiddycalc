@@ -9,6 +9,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    ignore:
+    - dependency-name: "node" # major must be in sync with webpack-dev-server
+      versions: ["18-alpine"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
