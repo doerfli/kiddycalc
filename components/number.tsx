@@ -14,13 +14,13 @@ export default function Number(props: NumberProps) {
 
     let icons = [];
     for (let i = 0; i < number; i++) {
-        icons.push(<FontAwesomeIcon icon={faCar} />);
+        icons.push(<FontAwesomeIcon icon={faCar} className="text-6xl" />);
     }
 
     return (
         <div>
             {[...Array(number)].map((x, i) =>
-                <FontAwesomeIcon key={i} icon={faCar} />
+                <FontAwesomeIcon key={i} icon={faCar} className="text-6xl" />
             )}
         </div>
     );

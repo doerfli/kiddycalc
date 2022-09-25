@@ -14,12 +14,13 @@ const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Create Next App</title>
+        <title>Kiddycalc</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Game />
-
+      <div className="container mx-auto px-4">
+        <Game />
+      </div>
       
     </div>
   )
