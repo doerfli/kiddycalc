@@ -32,13 +32,13 @@ export default function ResultSelector(props: ResultChooserProps) {
     return (
         <div className="flex flex-cols-3 gap-4 items-center">
             <div>
-                <IconBlock icon="car" number={choices[0]} class="bg-yellow-300 mr-8" />
+                <IconBlock icon="car" number={choices[0]} class="result_block mr-8" />
             </div>
             <div>
-                <IconBlock icon="car" number={choices[1]} class="bg-yellow-300 mr-8" />
+                <IconBlock icon="car" number={choices[1]} class="result_block mr-8" />
             </div>
             <div>
-                <IconBlock icon="car" number={choices[2]} class="bg-yellow-300" />
+                <IconBlock icon="car" number={choices[2]} class="result_block" />
             </div>
         </div>
     );
