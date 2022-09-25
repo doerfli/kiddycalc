@@ -29,16 +29,42 @@ export default function ResultSelector(props: ResultChooserProps) {
     const [ expectedResult ] = useState(props.result);
     const [ choices ] = useState(arrayShuffle(results));
 
+    function checkResult(result: number, successCallback: any): any {
+        const correct = result === expectedResult;
+        console.log(correct);
+        successCallback(correct);
+    }
+
     return (
         <div className="flex flex-cols-3 gap-4 items-center">
             <div>
-                <IconBlock icon="car" number={choices[0]} class="result_block mr-8" />
+                <IconBlock 
+                    icon="car" 
+                    number={choices[0]} 
+                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
+                    class="mr-8"
+                    onClickHandler={checkResult}
+                    onClickValue={choices[0]}
+                    />
             </div>
             <div>
-                <IconBlock icon="car" number={choices[1]} class="result_block mr-8" />
+                <IconBlock 
+                    icon="car" 
+                    number={choices[1]} 
+                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
+                    class="mr-8"
+                    onClickHandler={checkResult}
+                    onClickValue={choices[1]}
+                    />
             </div>
             <div>
-                <IconBlock icon="car" number={choices[2]} class="result_block" />
+                <IconBlock 
+                    icon="car" 
+                    number={choices[2]} 
+                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
+                    onClickHandler={checkResult}
+                    onClickValue={choices[2]}
+                    />
             </div>
         </div>
     );

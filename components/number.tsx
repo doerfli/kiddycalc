@@ -10,7 +10,7 @@ export default function Number(props: NumberProps) {
     const [ number, setNumber ] = useState(props.number);
 
     return (
-        <IconBlock icon="car" number={number} class="option" />
+        <IconBlock icon="car" number={number} colorClass="bg-blue-300" />
     );
 
 }
