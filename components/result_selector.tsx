@@ -6,6 +6,7 @@ import { resourceLimits } from "worker_threads";
 
 interface ResultChooserProps {
     result: number;
+    successCallback: () => void;
 }; 
 
 export default function ResultSelector(props: ResultChooserProps) {
@@ -26,13 +27,16 @@ export default function ResultSelector(props: ResultChooserProps) {
         results.push(newResult);
     }
 
-    const [ expectedResult ] = useState(props.result);
-    const [ choices ] = useState(arrayShuffle(results));
+    const choices = arrayShuffle(results);
 
-    function checkResult(result: number, successCallback: any): any {
-        const correct = result === expectedResult;
+    function checkResult(result: number, wasSuccessful: any): any {
+        const correct = result === props.result;
         console.log(correct);
-        successCallback(correct);
+        wasSuccessful(correct);
+
+        if (correct) {
+            props.successCallback();
+        }
     }
 
     return (

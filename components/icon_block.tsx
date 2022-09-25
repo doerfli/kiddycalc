@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -13,7 +13,6 @@ interface IconBlockProps {
 }; 
 
 export default function IconBlock(props: IconBlockProps) {
-    const [ icon ] = useState(props.icon as IconProp);
     const [ clicked, setClicked ] = useState(false);
     const [ correct, setCorrect ] = useState(false);
 
@@ -38,10 +37,15 @@ export default function IconBlock(props: IconBlockProps) {
         setCorrect(correct);
     }
 
+    useEffect(() => {
+        setClicked(false);
+        setCorrect(false);
+    }, [props.number]);
+
     return (
         <div className={cls} onClick={() => props.onClickHandler(props.onClickValue, setCorrectResult)}>
             {[...Array(props.number)].map((_, i) =>
-                <FontAwesomeIcon key={i} icon={icon} className="text-6xl" />
+                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="text-6xl" />
             )}
         </div>
     );
