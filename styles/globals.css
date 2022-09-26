@@ -2,16 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-.result_initial {
-    @apply bg-yellow-300 hover:bg-yellow-500 shadow-gray-400 shadow-lg;
+.icon_block {
+    @apply text-gray-900 border-solid border-8;
+}
+
+.input_block {
+    @apply bg-lime-300 icon_block border-transparent;
+}
+
+.result_initial_1 {
+    @apply bg-yellow-300 hover:bg-yellow-500 shadow-gray-400 shadow-lg icon_block border-transparent;
+}
+
+.result_initial_2 {
+    @apply bg-sky-300 hover:bg-yellow-500 shadow-gray-400 shadow-lg icon_block border-transparent;
+}
+
+.result_initial_3 {
+    @apply bg-purple-300 hover:bg-yellow-500 shadow-gray-400 shadow-lg icon_block border-transparent;
 }
 
 .result_success { 
-    @apply bg-green-300;
+    @apply bg-green-400 icon_block border-transparent;
 }
 
 .result_fail { 
-    @apply bg-red-300;
+    @apply bg-gray-500 icon_block border-red-600;
 }
 
 .icon_operator {

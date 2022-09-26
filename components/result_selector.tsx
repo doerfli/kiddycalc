@@ -33,15 +33,15 @@ export default function ResultSelector(props: ResultChooserProps) {
 
     useEffect(() => {
         setChoices(generateResults(props.result));
-        setColorClass1("result_initial");
-        setColorClass2("result_initial");
-        setColorClass3("result_initial");
+        setColorClass1("result_initial_1");
+        setColorClass2("result_initial_2");
+        setColorClass3("result_initial_3");
     }, [props.result]);
 
     const [ choices, setChoices ] = useState(generateResults(props.result));
-    const [ colorClass1, setColorClass1 ] = useState("result_initial");
-    const [ colorClass2, setColorClass2 ] = useState("result_initial");
-    const [ colorClass3, setColorClass3 ] = useState("result_initial");
+    const [ colorClass1, setColorClass1 ] = useState("result_initial_1");
+    const [ colorClass2, setColorClass2 ] = useState("result_initial_2");
+    const [ colorClass3, setColorClass3 ] = useState("result_initial_3");
 
     function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
         const correct = result === props.result;

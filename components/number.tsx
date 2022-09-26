@@ -9,7 +9,7 @@ interface NumberProps {
 export default function Number(props: NumberProps) {
 
     return (
-        <IconBlock icon="car" number={props.number} colorClass="bg-blue-300" />
+        <IconBlock icon="car" number={props.number} colorClass="input_block" />
     );
 
 }
