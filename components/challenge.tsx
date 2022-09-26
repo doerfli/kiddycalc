@@ -17,14 +17,10 @@ const ResultSelector = dynamic(
 interface ChallengeProps {
     number1: number;
     number2: number;
-    newChallenge: () => void;
+    challengeSolved: () => void;
 }; 
 
 export default function Challenge(props: ChallengeProps) {
-
-    const successCallback = () => {
-        props.newChallenge();
-    };
 
     return (
         <div className="text-lg flex items-center">
@@ -41,7 +37,7 @@ export default function Challenge(props: ChallengeProps) {
                 <FontAwesomeIcon icon="equals" className="text-5xl" />
             </div>
             <div className="float-left px-4">
-                <ResultSelector result={props.number1 + props.number2} successCallback={successCallback} />
+                <ResultSelector result={props.number1 + props.number2} onSuccess={props.challengeSolved} />
             </div>
         </div>
     );

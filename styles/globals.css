@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.result_initial {
+    @apply bg-yellow-300 hover:bg-yellow-500;
+}
+
+.result_success { 
+    @apply bg-green-300;
+}
+
+.result_fail { 
+    @apply bg-red-300;
+}

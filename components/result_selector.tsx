@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconBlock from "./icon_block";
@@ -6,15 +6,14 @@ import { resourceLimits } from "worker_threads";
 
 interface ResultChooserProps {
     result: number;
-    successCallback: () => void;
+    onSuccess: () => void;
 }; 
 
-export default function ResultSelector(props: ResultChooserProps) {
-    // generate 3 results to select from (one being the correct one)
-    let results = [props.result];
+const generateResults = (result: number) => {
+    let results = [result];
     while (results.length < 3) {
         // Generate a random number between 2 below and 2 above the result
-        const newResult = props.result + 2 - Math.floor(Math.random() * 5);
+        const newResult = result + 2 - Math.floor(Math.random() * 5);
         
         if (newResult <= 0) {
             continue;
@@ -26,16 +25,33 @@ export default function ResultSelector(props: ResultChooserProps) {
 
         results.push(newResult);
     }
+    return arrayShuffle(results);
+}
 
-    const choices = arrayShuffle(results);
+export default function ResultSelector(props: ResultChooserProps) {
+    // generate 3 results to select from (one being the correct one)
 
-    function checkResult(result: number, wasSuccessful: any): any {
+    useEffect(() => {
+        setChoices(generateResults(props.result));
+        setColorClass1("result_initial");
+        setColorClass2("result_initial");
+        setColorClass3("result_initial");
+    }, [props.result]);
+
+    const [ choices, setChoices ] = useState(generateResults(props.result));
+    const [ colorClass1, setColorClass1 ] = useState("result_initial");
+    const [ colorClass2, setColorClass2 ] = useState("result_initial");
+    const [ colorClass3, setColorClass3 ] = useState("result_initial");
+
+    function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
         const correct = result === props.result;
         console.log(correct);
-        wasSuccessful(correct);
-
+        
         if (correct) {
-            props.successCallback();
+            setColorToIconBlock("result_success");
+            props.onSuccess();
+        } else {
+            setColorToIconBlock("result_fail");
         }
     }
 
@@ -45,29 +61,26 @@ export default function ResultSelector(props: ResultChooserProps) {
                 <IconBlock 
                     icon="car" 
                     number={choices[0]} 
-                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
+                    colorClass={colorClass1} 
                     class="mr-8"
-                    onClickHandler={checkResult}
-                    onClickValue={choices[0]}
+                    onClickHandler={() => validateResult(choices[0], setColorClass1)}
                     />
             </div>
             <div>
                 <IconBlock 
                     icon="car" 
                     number={choices[1]} 
-                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
+                    colorClass={colorClass2}
                     class="mr-8"
-                    onClickHandler={checkResult}
-                    onClickValue={choices[1]}
+                    onClickHandler={() => validateResult(choices[1], setColorClass2)}
                     />
             </div>
             <div>
                 <IconBlock 
                     icon="car" 
                     number={choices[2]} 
-                    colorClass="bg-yellow-300 hover:bg-yellow-500" 
-                    onClickHandler={checkResult}
-                    onClickValue={choices[2]}
+                    colorClass={colorClass3}
+                    onClickHandler={() => validateResult(choices[2], setColorClass3)}
                     />
             </div>
         </div>

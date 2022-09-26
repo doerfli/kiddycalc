@@ -27,7 +27,7 @@ export default function Game() {
 
     return (
         <div className="game">
-            <Challenge number1={number1} number2={number2} newChallenge={newChallenge}/>
+            <Challenge number1={number1} number2={number2} challengeSolved={newChallenge}/>
         </div>
     );
 }
