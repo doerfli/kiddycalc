@@ -23,7 +23,7 @@
 }
 
 .result_success { 
-    @apply bg-green-400 icon_block border-transparent;
+    @apply bg-green-400 icon_block border-green-600;
 }
 
 .result_fail { 
