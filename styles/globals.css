@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .result_initial {
-    @apply bg-yellow-300 hover:bg-yellow-500;
+    @apply bg-yellow-300 hover:bg-yellow-500 shadow-gray-400 shadow-lg;
 }
 
 .result_success { 
@@ -12,4 +12,12 @@
 
 .result_fail { 
     @apply bg-red-300;
+}
+
+.icon_operator {
+    @apply text-4xl;
+}
+
+.icon {
+    @apply text-5xl;
 }

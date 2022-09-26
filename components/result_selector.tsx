@@ -62,7 +62,7 @@ export default function ResultSelector(props: ResultChooserProps) {
                     icon="car" 
                     number={choices[0]} 
                     colorClass={colorClass1} 
-                    class="mr-8"
+                    class="mr-4"
                     onClickHandler={() => validateResult(choices[0], setColorClass1)}
                     />
             </div>
@@ -71,7 +71,7 @@ export default function ResultSelector(props: ResultChooserProps) {
                     icon="car" 
                     number={choices[1]} 
                     colorClass={colorClass2}
-                    class="mr-8"
+                    class="mr-4"
                     onClickHandler={() => validateResult(choices[1], setColorClass2)}
                     />
             </div>

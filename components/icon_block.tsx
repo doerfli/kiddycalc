@@ -13,7 +13,7 @@ interface IconBlockProps {
 
 export default function IconBlock(props: IconBlockProps) {
 
-    let cls = "grid grid-cols-2 gap-4 p-4 rounded-lg ";
+    let cls = "grid grid-cols-2 gap-3 p-4 rounded-lg ";
 
     if (props.class) {
         cls += props.class + " ";
@@ -24,7 +24,7 @@ export default function IconBlock(props: IconBlockProps) {
     return (
         <div className={cls} onClick={props.onClickHandler}>
             {[...Array(props.number)].map((_, i) =>
-                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="text-6xl" />
+                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="icon" />
             )}
         </div>
     );
