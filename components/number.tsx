@@ -1,15 +1,16 @@
-import React, { useState }  from "react";
+import React  from "react";
 
 import IconBlock from "./icon_block";
 
 interface NumberProps {
     number: number;
+    icon: string;
 }; 
 
 export default function Number(props: NumberProps) {
 
     return (
-        <IconBlock icon="car" number={props.number} colorClass="input_block" />
+        <IconBlock icon={props.icon} number={props.number} colorClass="input_block" />
     );
 
 }

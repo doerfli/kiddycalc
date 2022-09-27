@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .icon_block {
-    @apply text-gray-900 border-solid border-8;
+    @apply text-gray-900 border-solid border-8 grid grid-cols-2 gap-4 p-2 rounded-lg;
 }
 
 .input_block {

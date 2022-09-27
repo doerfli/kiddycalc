@@ -1,11 +1,10 @@
 import React, { useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconBlock from "./icon_block";
-import { resourceLimits } from "worker_threads";
+import ChallengeSpecification from "../models/challenge_specification";
 
 interface ResultChooserProps {
-    result: number;
+    definition: ChallengeSpecification;
     onSuccess: () => void;
 }; 
 
@@ -29,22 +28,21 @@ const generateResults = (result: number) => {
 }
 
 export default function ResultSelector(props: ResultChooserProps) {
-    // generate 3 results to select from (one being the correct one)
-
     useEffect(() => {
-        setChoices(generateResults(props.result));
+        setChoices(generateResults(props.definition.result));
         setColorClass1("result_initial_1");
         setColorClass2("result_initial_2");
         setColorClass3("result_initial_3");
-    }, [props.result]);
+    }, [props.definition.result]);
 
-    const [ choices, setChoices ] = useState(generateResults(props.result));
+    // generate 3 results to select from (one being the correct one)
+    const [ choices, setChoices ] = useState(generateResults(props.definition.result));
     const [ colorClass1, setColorClass1 ] = useState("result_initial_1");
     const [ colorClass2, setColorClass2 ] = useState("result_initial_2");
     const [ colorClass3, setColorClass3 ] = useState("result_initial_3");
 
     function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
-        const correct = result === props.result;
+        const correct = result === props.definition.result;
         console.log(correct);
         
         if (correct) {
@@ -64,7 +62,7 @@ export default function ResultSelector(props: ResultChooserProps) {
         <div className="flex flex-cols-3 gap-4 items-center">
             <div>
                 <IconBlock 
-                    icon="car" 
+                    icon={props.definition.icon}
                     number={choices[0]} 
                     colorClass={colorClass1} 
                     class="mr-4"
@@ -73,7 +71,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             </div>
             <div>
                 <IconBlock 
-                    icon="car" 
+                    icon={props.definition.icon}
                     number={choices[1]} 
                     colorClass={colorClass2}
                     class="mr-4"
@@ -82,7 +80,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             </div>
             <div>
                 <IconBlock 
-                    icon="car" 
+                    icon={props.definition.icon}
                     number={choices[2]} 
                     colorClass={colorClass3}
                     onClickHandler={() => validateResult(choices[2], setColorClass3)}

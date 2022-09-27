@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React  from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -13,7 +13,7 @@ interface IconBlockProps {
 
 export default function IconBlock(props: IconBlockProps) {
 
-    let cls = "grid grid-cols-2 gap-3 p-4 rounded-lg ";
+    let cls = "icon_block ";
 
     if (props.class) {
         cls += props.class + " ";

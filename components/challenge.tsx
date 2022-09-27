@@ -1,7 +1,8 @@
-import React, { useState }  from "react";
+import React from "react";
 import dynamic from 'next/dynamic'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ChallengeSpecification from "../models/challenge_specification";
 
 
 const Number = dynamic(
@@ -15,8 +16,7 @@ const ResultSelector = dynamic(
 )
 
 interface ChallengeProps {
-    number1: number;
-    number2: number;
+    definition: ChallengeSpecification;
     challengeSolved: () => void;
 }; 
 
@@ -25,19 +25,19 @@ export default function Challenge(props: ChallengeProps) {
     return (
         <div className="text-lg flex items-center">
             <div className="float-left px-2">
-                <Number number={props.number1} />
+                <Number number={props.definition.number1} icon={props.definition.icon} />
             </div>
             <div className="float-left px-2 align-middle">
                 <FontAwesomeIcon icon="plus" className="icon_operator" />
             </div>
             <div className="float-left px-2">
-                <Number number={props.number2} />
+                <Number number={props.definition.number2} icon={props.definition.icon} />
             </div>
             <div className="float-left px-2">
                 <FontAwesomeIcon icon="equals" className="icon_operator" />
             </div>
             <div className="float-left px-2">
-                <ResultSelector result={props.number1 + props.number2} onSuccess={props.challengeSolved} />
+                <ResultSelector definition={props.definition} onSuccess={props.challengeSolved} />
             </div>
         </div>
     );
