@@ -2,54 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-.challenge {
-    @apply text-lg flex items-center;
-}
+@layer components {
+    .challenge {
+        @apply text-lg flex items-center;
+    }
 
-.challenge_element {
-    @apply float-left px-2;
-}
+    .challenge_element {
+        @apply float-left px-2;
+    }
 
-.icon_block {
-    @apply text-gray-900 border-solid border-8 grid grid-cols-2 gap-4 p-2 rounded-lg;
-}
+    .icon_block {
+        @apply text-gray-900 border-solid border-8 grid grid-cols-2 gap-4 p-2 rounded-lg;
+    }
 
-.input_block {
-    @apply bg-lime-300 icon_block border-transparent;
-}
+    .input_block {
+        @apply bg-lime-300 icon_block border-transparent;
+    }
 
-.result_selector {
-    @apply grid grid-cols-3 gap-4 items-center;
-}
+    .icon_operator {
+        @apply text-4xl;
+    }
 
-.result_initial_1 {
-    @apply bg-yellow-300 shadow-gray-400 shadow-lg icon_block border-transparent;
-}
+    .icon {
+        @apply text-5xl;
+    }
 
-.result_initial_2 {
-    @apply bg-sky-300 shadow-gray-400 shadow-lg icon_block border-transparent;
-}
+    .result_selector {
+        @apply grid grid-cols-3 gap-4 items-center;
 
-.result_initial_3 {
-    @apply bg-purple-300 shadow-gray-400 shadow-lg icon_block border-transparent;
-}
+        .result_initial_1 {
+            @apply bg-yellow-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+        }
+        
+        .result_initial_2 {
+            @apply bg-sky-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+        }
+        
+        .result_initial_3 {
+            @apply bg-purple-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+        }    
 
-.result_success { 
-    @apply bg-green-400 icon_block border-green-600 shadow-lg shadow-transparent;
-}
+        .result_success { 
+            @apply bg-green-400 icon_block border-green-600 shadow-lg shadow-transparent;
+        }
+    
+        .result_fail { 
+            @apply bg-gray-500 icon_block border-red-600 shadow-lg shadow-transparent;
+        }
+    
+        .result_invisible { 
+            @apply icon_block invisible shadow-lg shadow-transparent;
+        }    
 
-.result_fail { 
-    @apply bg-gray-500 icon_block border-red-600 shadow-lg shadow-transparent;
-}
-
-.result_invisible { 
-    @apply icon_block invisible shadow-lg shadow-transparent;
-}
-
-.icon_operator {
-    @apply text-4xl;
-}
-
-.icon {
-    @apply text-5xl;
+    }
 }
