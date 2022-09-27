@@ -24,7 +24,7 @@ export default function IconBlock(props: IconBlockProps) {
     return (
         <div className={cls} onClick={props.onClickHandler}>
             {[...Array(props.number)].map((_, i) =>
-                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="icon" />
+                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="icon fa-fw" />
             )}
         </div>
     );

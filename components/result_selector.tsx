@@ -33,7 +33,7 @@ export default function ResultSelector(props: ResultChooserProps) {
         setColorClass1("result_initial_1");
         setColorClass2("result_initial_2");
         setColorClass3("result_initial_3");
-    }, [props.definition.result]);
+    }, [props.definition]);
 
     // generate 3 results to select from (one being the correct one)
     const [ choices, setChoices ] = useState(generateResults(props.definition.result));
@@ -65,7 +65,7 @@ export default function ResultSelector(props: ResultChooserProps) {
                     icon={props.definition.icon}
                     number={choices[0]} 
                     colorClass={colorClass1} 
-                    class="mr-4"
+                    class="mr-2"
                     onClickHandler={() => validateResult(choices[0], setColorClass1)}
                     />
             </div>
@@ -74,7 +74,7 @@ export default function ResultSelector(props: ResultChooserProps) {
                     icon={props.definition.icon}
                     number={choices[1]} 
                     colorClass={colorClass2}
-                    class="mr-4"
+                    class="mr-2"
                     onClickHandler={() => validateResult(choices[1], setColorClass2)}
                     />
             </div>
