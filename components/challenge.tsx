@@ -23,20 +23,20 @@ interface ChallengeProps {
 export default function Challenge(props: ChallengeProps) {
 
     return (
-        <div className="text-lg flex items-center">
-            <div className="float-left px-2">
+        <div className="challenge">
+            <div className="challenge_element">
                 <Number number={props.definition.number1} icon={props.definition.icon} />
             </div>
-            <div className="float-left px-2 align-middle">
+            <div className="challenge_element">
                 <FontAwesomeIcon icon="plus" className="icon_operator" />
             </div>
-            <div className="float-left px-2">
+            <div className="challenge_element">
                 <Number number={props.definition.number2} icon={props.definition.icon} />
             </div>
-            <div className="float-left px-2">
+            <div className="challenge_element">
                 <FontAwesomeIcon icon="equals" className="icon_operator" />
             </div>
-            <div className="float-left px-2">
+            <div className="challenge_element">
                 <ResultSelector definition={props.definition} onSuccess={props.challengeSolved} />
             </div>
         </div>

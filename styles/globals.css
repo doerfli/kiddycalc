@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.challenge {
+    @apply text-lg flex items-center;
+}
+
+.challenge_element {
+    @apply float-left px-2;
+}
+
 .icon_block {
     @apply text-gray-900 border-solid border-8 grid grid-cols-2 gap-4 p-2 rounded-lg;
 }
 
 .input_block {
     @apply bg-lime-300 icon_block border-transparent;
+}
+
+.result_selector {
+    @apply grid grid-cols-3 gap-4 items-center;
 }
 
 .result_initial_1 {

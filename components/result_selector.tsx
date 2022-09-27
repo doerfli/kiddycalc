@@ -59,7 +59,7 @@ export default function ResultSelector(props: ResultChooserProps) {
     }
 
     return (
-        <div className="flex flex-cols-3 gap-4 items-center">
+        <div className="result_selector">
             <div>
                 <IconBlock 
                     icon={props.definition.icon}
