@@ -23,11 +23,15 @@
 }
 
 .result_success { 
-    @apply bg-green-400 icon_block border-green-600;
+    @apply bg-green-400 icon_block border-green-600 shadow-lg shadow-transparent;
 }
 
 .result_fail { 
-    @apply bg-gray-500 icon_block border-red-600;
+    @apply bg-gray-500 icon_block border-red-600 shadow-lg shadow-transparent;
+}
+
+.result_invisible { 
+    @apply icon_block invisible shadow-lg shadow-transparent;
 }
 
 .icon_operator {

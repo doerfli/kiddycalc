@@ -48,6 +48,11 @@ export default function ResultSelector(props: ResultChooserProps) {
         console.log(correct);
         
         if (correct) {
+            // hide all
+            setColorClass1("result_invisible");
+            setColorClass2("result_invisible");
+            setColorClass3("result_invisible");
+            // mark correct block as success
             setColorToIconBlock("result_success");
             props.onSuccess();
         } else {
