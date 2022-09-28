@@ -12,7 +12,7 @@ const ICONS: Array<string> = [
     "car-side",
     "truck",
     "motorcycle",
-    "bicyle",
+    "bicycle",
     "truck-medical",
     "helicopter",
     "sailboat",

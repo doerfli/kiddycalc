@@ -18,9 +18,12 @@
     }
 
     .icon_block {
-        @apply p-2 grid grid-cols-2 gap-4;
+        @apply p-1 gap-1 grid grid-cols-2;
+        @apply md:p-2 md:gap-2;
+        @apply lg:p-2 lg:gap-4;
         @apply text-black opacity-90;
-        @apply border-solid border-8 rounded-lg;
+        @apply border-2 border-solid rounded-lg;
+        @apply lg:border-8;
     }
 
     .input_block {
@@ -28,30 +31,37 @@
     }
 
     .icon_operator {
-        @apply text-4xl;
+        @apply text-xl;
+        @apply md:text-3xl;
+        @apply lg:text-4xl;
     }
 
     .icon {
-        @apply text-5xl;
+        @apply lg:text-5xl md:text-4xl sm:text-2xl;
     }
 
     .result_selector {
-        @apply grid grid-cols-3 gap-4 items-center;
+        @apply gap-2 grid grid-cols-3 items-center;
+        @apply lg:gap-2;
 
         .result_initial_1 {
-            @apply bg-yellow-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+            @apply bg-yellow-300 shadow-gray-400 shadow-md icon_block border-transparent;
+            @apply lg:shadow-lg;
         }
         
         .result_initial_2 {
-            @apply bg-sky-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+            @apply bg-sky-300 shadow-gray-400 shadow-md icon_block border-transparent;
+            @apply lg:shadow-lg;
         }
         
         .result_initial_3 {
-            @apply bg-purple-300 shadow-gray-400 shadow-lg icon_block border-transparent;
+            @apply bg-purple-300 shadow-gray-400 shadow-md icon_block border-transparent;
+            @apply lg:shadow-lg;
         }    
 
         .result_success { 
-            @apply bg-green-400 icon_block border-green-600 shadow-lg shadow-transparent;
+            @apply bg-green-400 icon_block border-green-600 shadow-md shadow-transparent;
+            @apply lg:shadow-lg;
         }
 
         .success_animation_1  > .icon {
@@ -75,11 +85,13 @@
         }
     
         .result_fail { 
-            @apply bg-gray-500 icon_block border-red-600 shadow-lg shadow-transparent;
+            @apply bg-gray-500 icon_block border-red-600 shadow-md shadow-transparent;
+            @apply lg:shadow-lg;
         }
     
         .result_invisible { 
-            @apply icon_block invisible shadow-lg shadow-transparent;
+            @apply icon_block invisible shadow-md shadow-transparent;
+            @apply lg:shadow-lg;
         }    
 
     }
