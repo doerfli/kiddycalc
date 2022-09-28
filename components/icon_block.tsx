@@ -9,7 +9,7 @@ interface IconBlockProps {
     number: number;
     class?: string;
     onClickHandler?: any;
-}; 
+}
 
 export default function IconBlock(props: IconBlockProps) {
 

@@ -5,7 +5,7 @@ import IconBlock from "./icon_block";
 interface NumberProps {
     number: number;
     icon: string;
-}; 
+}
 
 export default function Number(props: NumberProps) {
 

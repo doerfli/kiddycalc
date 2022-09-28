@@ -18,7 +18,7 @@ const ResultSelector = dynamic(
 interface ChallengeProps {
     definition: ChallengeSpecification;
     challengeSolved: () => void;
-}; 
+}
 
 export default function Challenge(props: ChallengeProps) {
 

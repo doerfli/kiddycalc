@@ -6,10 +6,10 @@ import ChallengeSpecification from "../models/challenge_specification";
 interface ResultChooserProps {
     definition: ChallengeSpecification;
     onSuccess: () => void;
-}; 
+}
 
 const generateResults = (result: number) => {
-    let results = [result];
+    const results = [result];
     while (results.length < 3) {
         // Generate a random number between 2 below and 2 above the result
         const newResult = result + 2 - Math.floor(Math.random() * 5);
