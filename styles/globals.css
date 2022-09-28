@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer components { 
+
+    .body {
+        @apply bg-neutral-50;
+    }
+
     .challenge {
         @apply text-lg flex items-center;
     }
@@ -12,7 +17,9 @@
     }
 
     .icon_block {
-        @apply text-gray-900 border-solid border-8 grid grid-cols-2 gap-4 p-2 rounded-lg;
+        @apply p-2 grid grid-cols-2 gap-4;
+        @apply text-black opacity-90;
+        @apply border-solid border-8 rounded-lg;
     }
 
     .input_block {
