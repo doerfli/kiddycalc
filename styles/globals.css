@@ -65,6 +65,14 @@
         .success_animation_3 > .icon {
             @apply animate-bounce;
         }
+
+        .success_animation_4 > .icon {
+            @apply animate-jump-spin;
+        }
+
+        .success_animation_5 > .icon {
+            @apply animate-jump-roll;
+        }
     
         .result_fail { 
             @apply bg-gray-500 icon_block border-red-600 shadow-lg shadow-transparent;

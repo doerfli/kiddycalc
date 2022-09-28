@@ -7,6 +7,8 @@ const SUCCESS_ANIMATIONS = [
     "success_animation_1",
     "success_animation_2",
     "success_animation_3",
+    "success_animation_4",
+    "success_animation_5",
 ];
 
 interface ResultChooserProps {
