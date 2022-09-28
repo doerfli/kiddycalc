@@ -4,11 +4,11 @@ function getRandomIcon(): string {
     return ICONS[Math.floor(Math.random() * ICONS.length)];
 }
 
-function allIcons(): string[] {
+function allIcons(): Array<string> {
     return ICONS;
 }
 
-const ICONS = [
+const ICONS: Array<string> = [
     "car-side",
     "truck",
     "motorcycle",
