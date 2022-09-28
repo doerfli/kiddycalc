@@ -3,6 +3,12 @@ import arrayShuffle from 'array-shuffle';
 import IconBlock from "./icon_block";
 import ChallengeSpecification from "../models/challenge_specification";
 
+const SUCCESS_ANIMATIONS = [
+    "success_animation_1",
+    "success_animation_2",
+    "success_animation_3",
+];
+
 interface ResultChooserProps {
     definition: ChallengeSpecification;
     onSuccess: () => void;
@@ -25,6 +31,10 @@ const generateResults = (result: number) => {
         results.push(newResult);
     }
     return arrayShuffle(results);
+}
+
+const randomSuccessAnimation = () => {
+    return SUCCESS_ANIMATIONS[Math.floor(Math.random() * SUCCESS_ANIMATIONS.length)];
 }
 
 export default function ResultSelector(props: ResultChooserProps) {
@@ -51,7 +61,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             setColorClass2("result_invisible");
             setColorClass3("result_invisible");
             // mark correct block as success
-            setColorToIconBlock("result_success");
+            setColorToIconBlock("result_success " + randomSuccessAnimation());
             props.onSuccess();
         } else {
             setColorToIconBlock("result_fail");

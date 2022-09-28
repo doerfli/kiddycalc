@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components { 
 
     .body {
@@ -51,6 +52,18 @@
 
         .result_success { 
             @apply bg-green-400 icon_block border-green-600 shadow-lg shadow-transparent;
+        }
+
+        .success_animation_1  > .icon {
+            @apply animate-spin-slow;
+        }
+
+        .success_animation_2 > .icon {
+            @apply animate-waving;
+        }
+
+        .success_animation_3 > .icon {
+            @apply animate-bounce;
         }
     
         .result_fail { 
