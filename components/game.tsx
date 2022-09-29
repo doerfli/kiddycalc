@@ -9,6 +9,11 @@ const Challenge = dynamic(
     { ssr: false }
 )
 
+const Timer = dynamic(
+    () => import('./timer'),
+    { ssr: false }
+)
+
 const newChallengeDefinition = (): ChallengeSpecification => {
     const n1 = Math.ceil(Math.random() * 5);
     const n2 = Math.ceil(Math.random() * 5);
@@ -31,8 +36,11 @@ export default function Game() {
     }
 
     return (
-        <div className="game">
-            <Challenge definition={challendeDefinition} challengeSolved={newChallenge}/>
+        <div className="app">
+            <div className="game">
+                <Challenge definition={challendeDefinition} challengeSolved={newChallenge}/>
+            </div>
+            <Timer />
         </div>
     );
 }
