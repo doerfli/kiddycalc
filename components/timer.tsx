@@ -9,6 +9,7 @@ export default function Timer() {
     const [ timerExpiration, setTimerExpiration ] = React.useState(0);
     const [ timerExpired, setTimerExpired ] = React.useState(false);
     const [ showTimerConfig, setShowTimerConfig ] = React.useState(false);
+    const [ timerColor, setTimerColor ] = React.useState("text-neutral-800");
     let intervalTimer: NodeJS.Timer;
 
     const configureTimer = () => {
@@ -26,9 +27,10 @@ export default function Timer() {
 
         setShowTimerConfig(false);
         console.log(minutes);
-        const durationSeconds = minutes * 10;
+        const durationSeconds = minutes * 60;
         const exp = Date.now() + durationSeconds * 1000;
         setTimerExpiration(exp);
+        setTimerColor("text-emerald-500");
         console.log(`timer set to expire at ${exp}s`);
         
         intervalTimer = setInterval(() => {
@@ -37,14 +39,20 @@ export default function Timer() {
             if (timeRemaining <= 0) {
                 setTimerExpired(true);
                 clearInterval(intervalTimer);
+            } else if (timeRemaining < 30) {
+                setTimerColor("text-red-500");
+            } else if (timeRemaining < 45) {
+                setTimerColor("text-yellow-500");
             }
         }, 1000);
     }
 
+    const timerClass = `fa-fw p-4 text-3xl ${timerColor}`;
+
     return (
         <div>
             <div className="absolute right-0 top-0 z-5">
-                <FontAwesomeIcon icon="stopwatch" className="fa-fw p-4 text-3xl text-neutral-800" onClick={configureTimer}/>
+                <FontAwesomeIcon icon="stopwatch" className={timerClass} onClick={configureTimer}/>
             </div>
             <TimerConfig show={showTimerConfig} engageTimer={engageTimer}/>
             <TimeoutOverlay show={timerExpired}/>
