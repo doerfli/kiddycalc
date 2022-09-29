@@ -21,12 +21,13 @@ export default function Timer() {
     }
 
     const engageTimer = (minutes: number) => {
+        setShowTimerConfig(false);
+        console.log(minutes);
+
         if (minutes === 0) {
             return;
         }
 
-        setShowTimerConfig(false);
-        console.log(minutes);
         const durationSeconds = minutes * 60;
         const exp = Date.now() + durationSeconds * 1000;
         setTimerExpiration(exp);
