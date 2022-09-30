@@ -14,24 +14,25 @@ const Timer = dynamic(
     { ssr: false }
 )
 
-const newChallengeDefinition = (): ChallengeSpecification => {
+const newChallengeDefinition = (round: number): ChallengeSpecification => {
     const n1 = Math.ceil(Math.random() * 5);
     const n2 = Math.ceil(Math.random() * 5);
     return { 
         number1: n1,
         number2: n2,
         result: n1 + n2,
-        icon: getRandomIcon()
+        icon: getRandomIcon(),
+        round: round
     } as ChallengeSpecification;
 }
 
 export default function Game() {
-    const [ challendeDefinition, setChallengeDefinition ] = useState(newChallengeDefinition());
+    const [ challendeDefinition, setChallengeDefinition ] = useState(newChallengeDefinition(0));
 
     async function newChallenge() {
         console.log("new challenge in 3 seconds");
         await delay(2000);
-        setChallengeDefinition(newChallengeDefinition());
+        setChallengeDefinition(newChallengeDefinition(challendeDefinition.round + 1));
         console.log("state updated");
     }
 
@@ -40,7 +41,7 @@ export default function Game() {
             <div className="game">
                 <Challenge definition={challendeDefinition} challengeSolved={newChallenge}/>
             </div>
-            <Timer />
+            <Timer definition={challendeDefinition} />
         </div>
     );
 }
