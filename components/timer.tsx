@@ -42,7 +42,7 @@ export default function Timer() {
                 clearInterval(intervalTimer);
             } else if (timeRemaining < 30) {
                 setTimerColor("text-red-500");
-            } else if (timeRemaining < 45) {
+            } else if (timeRemaining < 55) {
                 setTimerColor("text-yellow-500");
             }
         }, 1000);
