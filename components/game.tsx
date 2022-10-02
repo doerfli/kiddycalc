@@ -14,6 +14,12 @@ const Timer = dynamic(
     { ssr: false }
 )
 
+const TimeoutOverlay = dynamic(
+    () => import('./timeout_overlay'),
+    { ssr: false }
+)
+
+
 const newChallengeDefinition = (round: number): ChallengeSpecification => {
     const n1 = Math.ceil(Math.random() * 5);
     const n2 = Math.ceil(Math.random() * 5);
@@ -28,20 +34,38 @@ const newChallengeDefinition = (round: number): ChallengeSpecification => {
 
 export default function Game() {
     const [ challendeDefinition, setChallengeDefinition ] = useState(newChallengeDefinition(0));
+    const [ timerExpired, setTimerExpired ] = useState(false);
+    const [ timeoutOverlayActive, setTimeoutOverlayActive ] = useState(false);
 
     async function newChallenge() {
+        if (timerExpired) {
+            setTimeoutOverlayActive(true);
+            return;
+        }
+
         console.log("new challenge in 3 seconds");
         await delay(2000);
         setChallengeDefinition(newChallengeDefinition(challendeDefinition.round + 1));
         console.log("state updated");
     }
 
+    function onTimerExpired() {
+        setTimerExpired(true);
+    }
+
+    let gameClass = "game "
+
+    if (timeoutOverlayActive) {
+        gameClass += "timer-expired ";
+    }
+
     return (
         <div className="app">
-            <div className="game">
+            <div className={gameClass}>
                 <Challenge definition={challendeDefinition} challengeSolved={newChallenge}/>
             </div>
-            <Timer definition={challendeDefinition} />
+            <Timer definition={challendeDefinition} onTimerExpired={onTimerExpired} timeoutOverlayActive={timeoutOverlayActive} />
+            <TimeoutOverlay show={timeoutOverlayActive}/>
         </div>
     );
 }
