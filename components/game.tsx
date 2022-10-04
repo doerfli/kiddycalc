@@ -1,7 +1,7 @@
-import React, { useState }  from "react";
+import React, { useReducer, useState }  from "react";
 import dynamic from 'next/dynamic'
 import delay from "../utils/delay";
-import { GameContext, newGameState } from "../models/game_context";
+import { GameActionKind, GameContext, gameStateReducer, newGameState } from "../models/game_context";
 
 const Challenge = dynamic(
     () => import('./challenge'),
@@ -19,7 +19,7 @@ const TimeoutOverlay = dynamic(
 )
 
 export default function Game() {
-    const [ gameState, setGameState ] = useState(newGameState());
+    const [ gameState, dispatch ] = useReducer(gameStateReducer, newGameState());
     const [ timerExpired, setTimerExpired ] = useState(false);
     const [ timeoutOverlayActive, setTimeoutOverlayActive ] = useState(false);
     
@@ -31,7 +31,7 @@ export default function Game() {
 
         console.log("new challenge in 3 seconds");
         await delay(2000);
-        setGameState(newGameState());
+        dispatch({ type: GameActionKind.NEXT });
         console.log("state updated");
     }
 
@@ -46,7 +46,7 @@ export default function Game() {
     }
 
     return (
-        <GameContext.Provider value={{ gameState, setGameState }}>
+        <GameContext.Provider value={{ gameState, dispatch }}>
             <div className="app">
                 <div className={gameClass}>
                     <Challenge challengeSolved={challengeSolved}/>

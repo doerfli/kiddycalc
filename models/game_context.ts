@@ -1,10 +1,20 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { getRandomIcon } from "../utils/icons";
 import ChallengeSpecification from "./challenge_specification";
 
 export interface GameContext {
     gameState: GameState;
-    setGameState: Dispatch<SetStateAction<GameState>>;
+    dispatch: React.Dispatch<GameStateAction>;
+}
+
+export const GameContext = React.createContext<GameContext|null>(null);
+
+export enum GameActionKind  {
+    NEXT
+}
+
+export interface GameStateAction {
+    type: GameActionKind;
 }
 
 export interface GameState {
@@ -30,4 +40,11 @@ export const newGameState = (i = 0): GameState => {
     };
 }
 
-export const GameContext = React.createContext<GameContext|null>(null);
+export const gameStateReducer = (state: GameState, action: GameStateAction): GameState => {
+    switch (action.type) {
+        case GameActionKind.NEXT:
+            return newGameState(state.round);
+        default:
+            throw new Error(`Invalid action type ${action.type}`);
+    }
+}
