@@ -1,7 +1,7 @@
-import React, { useEffect, useState }  from "react";
+import React, { useContext, useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
 import IconBlock from "./icon_block";
-import ChallengeSpecification from "../models/challenge_specification";
+import { GameContext } from "../models/game_context";
 
 const SUCCESS_ANIMATIONS = [
     "success_animation_1",
@@ -12,7 +12,6 @@ const SUCCESS_ANIMATIONS = [
 ];
 
 interface ResultChooserProps {
-    definition: ChallengeSpecification;
     onSuccess: () => void;
 }
 
@@ -40,21 +39,23 @@ const randomSuccessAnimation = () => {
 }
 
 export default function ResultSelector(props: ResultChooserProps) {
+    const { gameState } = useContext(GameContext) as GameContext;
+
     useEffect(() => {
-        setChoices(generateResults(props.definition.result));
+        setChoices(generateResults(gameState.challenge.result));
         setColorClass1("result_initial_1");
         setColorClass2("result_initial_2");
         setColorClass3("result_initial_3");
-    }, [props.definition]);
+    }, [gameState.challenge]);
 
     // generate 3 results to select from (one being the correct one)
-    const [ choices, setChoices ] = useState(generateResults(props.definition.result));
+    const [ choices, setChoices ] = useState(generateResults(gameState.challenge.result));
     const [ colorClass1, setColorClass1 ] = useState("result_initial_1");
     const [ colorClass2, setColorClass2 ] = useState("result_initial_2");
     const [ colorClass3, setColorClass3 ] = useState("result_initial_3");
 
     function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
-        const correct = result === props.definition.result;
+        const correct = result === gameState.challenge.result;
         console.log(correct);
         
         if (correct) {
@@ -74,7 +75,7 @@ export default function ResultSelector(props: ResultChooserProps) {
         <div className="result_selector">
             <div>
                 <IconBlock 
-                    icon={props.definition.icon}
+                    icon={gameState.challenge.icon}
                     number={choices[0]} 
                     colorClass={colorClass1} 
                     class="mr-2"
@@ -83,7 +84,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             </div>
             <div>
                 <IconBlock 
-                    icon={props.definition.icon}
+                    icon={gameState.challenge.icon}
                     number={choices[1]} 
                     colorClass={colorClass2}
                     class="mr-2"
@@ -92,7 +93,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             </div>
             <div>
                 <IconBlock 
-                    icon={props.definition.icon}
+                    icon={gameState.challenge.icon}
                     number={choices[2]} 
                     colorClass={colorClass3}
                     onClickHandler={() => validateResult(choices[2], setColorClass3)}

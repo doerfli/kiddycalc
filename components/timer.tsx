@@ -1,17 +1,13 @@
 import React  from "react";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TimerConfig from "./timer_config";
-import ChallengeSpecification from "../models/challenge_specification";
 
 interface TimerProps {
-    definition: ChallengeSpecification;
     onTimerExpired: () => void;
     timeoutOverlayActive: boolean;
 }
 
 export default function Timer(props: TimerProps) {
-
     const [ timerIconColor, setTimerIconColor ] = React.useState("text-neutral-800");
     const [ timerExpiration, setTimerExpiration ] = React.useState(0);
     const [ showTimerConfigOverlay, setShowTimerConfigOverlay ] = React.useState(false);

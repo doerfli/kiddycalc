@@ -1,8 +1,7 @@
 import React, { useState }  from "react";
 import dynamic from 'next/dynamic'
 import delay from "../utils/delay";
-import ChallengeSpecification from "../models/challenge_specification";
-import { getRandomIcon } from "../utils/icons";
+import { GameContext, newGameState } from "../models/game_context";
 
 const Challenge = dynamic(
     () => import('./challenge'),
@@ -19,25 +18,12 @@ const TimeoutOverlay = dynamic(
     { ssr: false }
 )
 
-
-const newChallengeDefinition = (round: number): ChallengeSpecification => {
-    const n1 = Math.ceil(Math.random() * 5);
-    const n2 = Math.ceil(Math.random() * 5);
-    return { 
-        number1: n1,
-        number2: n2,
-        result: n1 + n2,
-        icon: getRandomIcon(),
-        round: round
-    } as ChallengeSpecification;
-}
-
 export default function Game() {
-    const [ challendeDefinition, setChallengeDefinition ] = useState(newChallengeDefinition(0));
+    const [ gameState, setGameState ] = useState(newGameState());
     const [ timerExpired, setTimerExpired ] = useState(false);
     const [ timeoutOverlayActive, setTimeoutOverlayActive ] = useState(false);
-
-    async function newChallenge() {
+    
+    async function challengeSolved() {
         if (timerExpired) {
             setTimeoutOverlayActive(true);
             return;
@@ -45,7 +31,7 @@ export default function Game() {
 
         console.log("new challenge in 3 seconds");
         await delay(2000);
-        setChallengeDefinition(newChallengeDefinition(challendeDefinition.round + 1));
+        setGameState(newGameState());
         console.log("state updated");
     }
 
@@ -60,12 +46,14 @@ export default function Game() {
     }
 
     return (
-        <div className="app">
-            <div className={gameClass}>
-                <Challenge definition={challendeDefinition} challengeSolved={newChallenge}/>
+        <GameContext.Provider value={{ gameState, setGameState }}>
+            <div className="app">
+                <div className={gameClass}>
+                    <Challenge challengeSolved={challengeSolved}/>
+                </div>
+                <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={timeoutOverlayActive} />
+                <TimeoutOverlay show={timeoutOverlayActive}/>
             </div>
-            <Timer definition={challendeDefinition} onTimerExpired={onTimerExpired} timeoutOverlayActive={timeoutOverlayActive} />
-            <TimeoutOverlay show={timeoutOverlayActive}/>
-        </div>
+        </GameContext.Provider>
     );
 }
