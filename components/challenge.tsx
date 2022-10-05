@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GameContext } from "../models/game_context";
 
 const Number = dynamic(
-    () => import('./number'),
+    () => import('./number/number'),
     { ssr: false }
 )
 
@@ -23,13 +23,13 @@ export default function Challenge(props: ChallengeProps) {
     return (
         <div className="challenge">
             <div className="challenge_element">
-                <Number number={gameState.challenge.number1} icon={gameState.challenge.icon} />
+                <Number number={gameState.challenge.number1} icon={gameState.challenge.icon} colorClass="input_block" />
             </div>
             <div className="challenge_element">
                 <FontAwesomeIcon icon="plus" className="icon_operator" />
             </div>
             <div className="challenge_element">
-                <Number number={gameState.challenge.number2} icon={gameState.challenge.icon} />
+                <Number number={gameState.challenge.number2} icon={gameState.challenge.icon} colorClass="input_block" />
             </div>
             <div className="challenge_element">
                 <FontAwesomeIcon icon="equals" className="icon_operator" />

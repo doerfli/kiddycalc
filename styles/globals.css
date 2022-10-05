@@ -31,7 +31,7 @@
     }
 
     .input_block {
-        @apply bg-lime-300 icon_block border-transparent;
+        @apply bg-lime-300 border-transparent;
     }
 
     .icon_operator {
@@ -48,24 +48,25 @@
         @apply gap-2 grid grid-cols-3 items-center;
         @apply lg:gap-2;
 
-        .result_initial_1 {
-            @apply bg-yellow-300 shadow-gray-400 shadow-md icon_block border-transparent;
-            @apply lg:shadow-lg;
+        > div {
+            @apply shadow-gray-400 shadow-md border-transparent;
+            @apply lg:shadow-gray-400 lg:shadow-lg;
+        }
+
+        > div:nth-child(1) {
+            @apply bg-yellow-300;
         }
         
-        .result_initial_2 {
-            @apply bg-sky-300 shadow-gray-400 shadow-md icon_block border-transparent;
-            @apply lg:shadow-lg;
+        > div:nth-child(2) {
+            @apply bg-sky-300;
         }
         
-        .result_initial_3 {
-            @apply bg-purple-300 shadow-gray-400 shadow-md icon_block border-transparent;
-            @apply lg:shadow-lg;
+        > div:nth-child(3) {
+            @apply bg-purple-300;
         }    
 
         .result_success { 
-            @apply bg-green-400 icon_block border-green-600 shadow-md shadow-transparent;
-            @apply lg:shadow-lg;
+            @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
         }
 
         .success_animation_1  > .icon {
@@ -89,13 +90,11 @@
         }
     
         .result_fail { 
-            @apply bg-gray-500 icon_block border-red-600 shadow-md shadow-transparent;
-            @apply lg:shadow-lg;
+            @apply bg-gray-500 border-red-600 shadow-md shadow-transparent !important;
         }
     
         .result_invisible { 
-            @apply icon_block invisible shadow-md shadow-transparent;
-            @apply lg:shadow-lg;
+            @apply invisible shadow-md shadow-transparent !important;
         }    
 
     }
