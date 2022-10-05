@@ -30,6 +30,17 @@
         @apply lg:border-8;
     }
 
+    .number_block {
+        @apply p-2;
+        @apply md:p-4;
+        @apply lg:p-4;
+        @apply text-black opacity-90;
+        @apply border-2 border-solid rounded-lg;
+        @apply lg:border-8;
+        @apply text-center;
+    }
+
+
     .input_block {
         @apply bg-lime-300 border-transparent;
     }
@@ -42,6 +53,11 @@
 
     .icon {
         @apply lg:text-5xl md:text-4xl sm:text-2xl;
+    }
+
+    .number_icon {
+        @apply lg:text-5xl md:text-4xl sm:text-2xl;
+        @apply px-0.5;
     }
 
     .result_selector {
@@ -69,23 +85,28 @@
             @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
         }
 
-        .success_animation_1  > .icon {
+        .success_animation_1  > .icon,
+        .success_animation_1  > .number_icon {
             @apply animate-spin-slow;
         }
 
-        .success_animation_2 > .icon {
+        .success_animation_2 > .icon,
+        .success_animation_2 > .number_icon {
             @apply animate-waving;
         }
 
-        .success_animation_3 > .icon {
+        .success_animation_3 > .icon,
+        .success_animation_3 > .number_icon {
             @apply animate-bounce;
         }
 
-        .success_animation_4 > .icon {
+        .success_animation_4 > .icon,
+        .success_animation_4 > .number_icon {
             @apply animate-jump-spin;
         }
 
-        .success_animation_5 > .icon {
+        .success_animation_5 > .icon,
+        .success_animation_5 > .number_icon {
             @apply animate-jump-roll;
         }
     

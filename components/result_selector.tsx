@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
-import IconBlock from "./number/icon_block";
 import { GameContext } from "../models/game_context";
+import NumberElement, { NumberElementType } from "./number/number_element";
 
 const SUCCESS_ANIMATIONS = [
     "success_animation_1",
@@ -41,18 +41,18 @@ const randomSuccessAnimation = () => {
 export default function ResultSelector(props: ResultChooserProps) {
     const { gameState } = useContext(GameContext) as GameContext;
 
+    // generate 3 results to select from (one being the correct one)
+    const [ choices, setChoices ] = useState([] as number[]);
+    const [ colorClass1, setColorClass1 ] = useState("");
+    const [ colorClass2, setColorClass2 ] = useState("");
+    const [ colorClass3, setColorClass3 ] = useState("");
+
     useEffect(() => {
         setChoices(generateResults(gameState.challenge.result));
         setColorClass1("");
         setColorClass2("");
         setColorClass3("");
     }, [gameState.challenge]);
-
-    // generate 3 results to select from (one being the correct one)
-    const [ choices, setChoices ] = useState(generateResults(gameState.challenge.result));
-    const [ colorClass1, setColorClass1 ] = useState("");
-    const [ colorClass2, setColorClass2 ] = useState("");
-    const [ colorClass3, setColorClass3 ] = useState("");
 
     function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
         const correct = result === gameState.challenge.result;
@@ -73,21 +73,24 @@ export default function ResultSelector(props: ResultChooserProps) {
 
     return (
         <div className="result_selector">
-            <IconBlock 
+            <NumberElement 
+                type={gameState.challenge.resultType1}
                 icon={gameState.challenge.icon}
                 number={choices[0]} 
                 colorClass={colorClass1} 
                 class="mr-2"
                 onClickHandler={() => validateResult(choices[0], setColorClass1)}
                 />
-            <IconBlock 
+            <NumberElement 
+                type={gameState.challenge.resultType2}
                 icon={gameState.challenge.icon}
                 number={choices[1]} 
                 colorClass={colorClass2}
                 class="mr-2"
                 onClickHandler={() => validateResult(choices[1], setColorClass2)}
                 />
-            <IconBlock 
+            <NumberElement 
+                type={gameState.challenge.resultType3}
                 icon={gameState.challenge.icon}
                 number={choices[2]} 
                 colorClass={colorClass3}
