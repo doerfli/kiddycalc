@@ -29,7 +29,7 @@ export default function Timer(props: TimerProps) {
             return;
         }
 
-        const durationSeconds = minutes * 20;
+        const durationSeconds = minutes * 60;
         const exp = Date.now() + durationSeconds * 1000;
         setTimerExpiration(exp);
         setTimerIconColor("text-emerald-500");
