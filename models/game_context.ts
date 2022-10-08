@@ -1,5 +1,5 @@
 import React from "react";
-import { GameState, newGameState } from "./game_state";
+import { GameState, gameStateWithTimeout, newGameState } from "./game_state";
 
 export interface GameContext {
     gameState: GameState;
@@ -9,7 +9,8 @@ export interface GameContext {
 export const GameContext = React.createContext<GameContext|null>(null);
 
 export enum GameActionKind  {
-    NEXT
+    NEXT,
+    TIME_IS_UP
 }
 
 export interface GameStateAction {
@@ -20,6 +21,8 @@ export const gameStateReducer = (state: GameState, action: GameStateAction): Gam
     switch (action.type) {
         case GameActionKind.NEXT:
             return newGameState(state.round);
+        case GameActionKind.TIME_IS_UP:
+            return gameStateWithTimeout(state);
         default:
             throw new Error(`Invalid action type ${action.type}`);
     }

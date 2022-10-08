@@ -22,14 +22,13 @@ const TimeoutOverlay = dynamic(
 export default function Game() {
     const [ gameState, dispatch ] = useReducer(gameStateReducer, newGameState());
     const [ timerExpired, setTimerExpired ] = useState(false);
-    const [ timeoutOverlayActive, setTimeoutOverlayActive ] = useState(false);
     
     async function challengeSolved() {
         console.log("new challenge in 3 seconds");
         await delay(2000);
 
         if (timerExpired) {
-            setTimeoutOverlayActive(true);
+            dispatch({ type: GameActionKind.TIME_IS_UP });
             return;
         }
 
@@ -43,7 +42,7 @@ export default function Game() {
 
     let gameClass = "game "
 
-    if (timeoutOverlayActive) {
+    if (gameState.timeIsUp) {
         gameClass += "timer-expired ";
     }
 
@@ -53,8 +52,8 @@ export default function Game() {
                 <div className={gameClass}>
                     <Challenge challengeSolved={challengeSolved}/>
                 </div>
-                <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={timeoutOverlayActive} />
-                <TimeoutOverlay show={timeoutOverlayActive}/>
+                <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={gameState.timeIsUp} />
+                <TimeoutOverlay show={gameState.timeIsUp}/>
             </div>
         </GameContext.Provider>
     );
