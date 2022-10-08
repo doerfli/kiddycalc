@@ -24,32 +24,47 @@ export default function Game() {
     const [ timerExpired, setTimerExpired ] = useState(false);
     
     async function challengeSolved(correct: boolean) {
-        console.log("new challenge in 3 seconds");
+        console.log("new challenge in 2 seconds");
         await delay(2000);
 
+        dispatch({ type: GameActionKind.SPIN_START });
+        console.log("spin starting");
+
+        await delay(650);
+        // now the challange is gone (animation takes 600ms to hide challenge)
+        
         if (timerExpired) {
             dispatch({ type: GameActionKind.TIME_IS_UP });
-            return;
+        } else {
+            dispatch({ type: GameActionKind.NEXT_CHALLENGE, correctOnFirstAttempt: correct });
         }
 
-        dispatch({ type: GameActionKind.NEXT, correctOnFirstAttempt: correct });
-        console.log("state updated");
+        await delay(850);
+        // remove spin class after spin finished
+        dispatch({ type: GameActionKind.SPIN_STOP });
     }
 
     function onTimerExpired() {
         setTimerExpired(true);
     }
 
-    let gameClass = "game "
+    let gameClass = " "
+
+    if (gameState.spin) {
+        gameClass += "animate-spin-out-in ";
+    }
+
+    let challengeClass = "game "
 
     if (gameState.timeIsUp) {
-        gameClass += "timer-expired ";
+        challengeClass += "timer-expired ";
     }
+
 
     return (
         <GameContext.Provider value={{ gameState, dispatch }}>
-            <div className="app">
-                <div className={gameClass}>
+            <div className={gameClass}>
+                <div className={challengeClass}>
                     <Challenge challengeSolved={challengeSolved}/>
                 </div>
                 <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={gameState.timeIsUp} />

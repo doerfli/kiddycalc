@@ -8,7 +8,7 @@ interface TimeoutOverlayProps {
 
 export default function TimeoutOverlay(props: TimeoutOverlayProps) {
 
-    let cls = "fixed z-10";
+    let cls = "z-10 animate-spin-in ";
 
     if (! props.show) {
         cls += " hidden";
@@ -17,7 +17,7 @@ export default function TimeoutOverlay(props: TimeoutOverlayProps) {
     return (
         <div>
             <div className={cls}>
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-80 flex">
+                <div className="absolute inset-0 flex">
                     <div className="w-60 h-60 m-auto align-middle">
                         <div className="h-full w-full flex bg-red-100 rounded-xl">
                             <span className="m-auto align-middle">

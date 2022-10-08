@@ -1,5 +1,5 @@
 import React from "react";
-import { GameState, gameStateWithTimeout, newGameState } from "./game_state";
+import { GameState, gameStateNextChallenge, gameStateSpinStart, gameStateSpinStop, gameStateWithTimeout } from "./game_state";
 
 export interface GameContext {
     gameState: GameState;
@@ -9,8 +9,10 @@ export interface GameContext {
 export const GameContext = React.createContext<GameContext|null>(null);
 
 export enum GameActionKind  {
-    NEXT,
-    TIME_IS_UP
+    SPIN_START,
+    NEXT_CHALLENGE,
+    SPIN_STOP,
+    TIME_IS_UP,
 }
 
 export interface GameStateAction {
@@ -20,8 +22,12 @@ export interface GameStateAction {
 
 export const gameStateReducer = (state: GameState, action: GameStateAction): GameState => {
     switch (action.type) {
-        case GameActionKind.NEXT:
-            return newGameState(state, action.correctOnFirstAttempt || false);
+        case GameActionKind.SPIN_START:
+            return gameStateSpinStart(state);
+        case GameActionKind.NEXT_CHALLENGE:
+            return gameStateNextChallenge(state, action.correctOnFirstAttempt || false);
+        case GameActionKind.SPIN_STOP:
+            return gameStateSpinStop(state);
         case GameActionKind.TIME_IS_UP:
             return gameStateWithTimeout(state);
         default:

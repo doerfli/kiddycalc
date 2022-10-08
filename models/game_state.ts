@@ -6,6 +6,7 @@ export interface GameState {
     level: number;
     challenge: ChallengeSpecification;
     timeIsUp: boolean;
+    spin: boolean;
 }
 
 export const initialGameState = (): GameState => {
@@ -14,7 +15,8 @@ export const initialGameState = (): GameState => {
         challengesSolvedInFirstAttempt: 0,
         level: 1,
         challenge: newChallenge(1),
-        timeIsUp: false
+        timeIsUp: false,
+        spin: false,
     };
 }
 
@@ -23,9 +25,18 @@ const evaluateLevelRounds = 8;
 const minCorrectAnswersForLevelIncrement = 5;
 const maxCorrectAnswersForLevelDecrement = 2;
 
-export const newGameState = (state: GameState, correctAtFirstAttempt: boolean): GameState => {
-    let correctAttempts = correctAtFirstAttempt ? state.challengesSolvedInFirstAttempt + 1 : state.challengesSolvedInFirstAttempt
+export const gameStateSpinStart = (state: GameState): GameState => {
+    const newState = {
+        ...state,
+        spin: true
+    };
+    console.log(newState);
+    return newState;
+}
+
+export const gameStateNextChallenge = (state: GameState, correctOnFirstAttempt: boolean): GameState => {
     let level = state.level;
+    let correctAttempts = correctOnFirstAttempt ? state.challengesSolvedInFirstAttempt + 1 : state.challengesSolvedInFirstAttempt;
 
     if (state.round % evaluateLevelRounds === 0) {
         if (level < maxLevel && correctAttempts >= minCorrectAnswersForLevelIncrement) {
@@ -37,15 +48,25 @@ export const newGameState = (state: GameState, correctAtFirstAttempt: boolean): 
     }
 
     const newState = {
+        ...state,
         round: state.round + 1,
         challengesSolvedInFirstAttempt: correctAttempts,
         level: level,
         challenge: newChallenge(state.level),
-        timeIsUp: false
     };
     console.log(newState);
     return newState;
 }
+
+export const gameStateSpinStop = (state: GameState): GameState => {
+    const newState = {
+        ...state,
+        spin: false
+    };
+    console.log(newState);
+    return newState;
+}
+
 
 export const gameStateWithTimeout = (state: GameState): GameState => {
     return {
