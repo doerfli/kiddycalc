@@ -6,7 +6,7 @@
 @layer components { 
 
     .body {
-        @apply bg-neutral-50;
+        @apply bg-neutral-50 overflow-hidden;
     }
 
     .game.timer-expired {
