@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
 import { GameContext } from "../models/game_context";
-import NumberElement, { NumberElementType } from "./number/number_element";
+import NumberElement from "./number/number_element";
 
 const SUCCESS_ANIMATIONS = [
     "success_animation_1",
@@ -12,7 +12,7 @@ const SUCCESS_ANIMATIONS = [
 ];
 
 interface ResultChooserProps {
-    onSuccess: () => void;
+    onSuccess: (correct: boolean) => void;
 }
 
 const generateResults = (result: number) => {
@@ -40,6 +40,7 @@ const randomSuccessAnimation = () => {
 
 export default function ResultSelector(props: ResultChooserProps) {
     const { gameState } = useContext(GameContext) as GameContext;
+    const [ tries, setTries ] = useState(0);
 
     // generate 3 results to select from (one being the correct one)
     const [ choices, setChoices ] = useState([] as number[]);
@@ -48,15 +49,19 @@ export default function ResultSelector(props: ResultChooserProps) {
     const [ colorClass3, setColorClass3 ] = useState("");
 
     useEffect(() => {
+        // reset result selector
         setChoices(generateResults(gameState.challenge.result));
         setColorClass1("");
         setColorClass2("");
         setColorClass3("");
+        setTries(0);
     }, [gameState.challenge]);
 
     function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
         const correct = result === gameState.challenge.result;
         console.log(correct);
+        const newTries = tries + 1;
+        setTries(newTries);
         
         if (correct) {
             // hide all
@@ -65,7 +70,7 @@ export default function ResultSelector(props: ResultChooserProps) {
             setColorClass3("result_invisible");
             // mark correct block as success
             setColorToIconBlock("result_success " + randomSuccessAnimation());
-            props.onSuccess();
+            props.onSuccess(newTries == 1);
         } else {
             setColorToIconBlock("result_fail");
         }

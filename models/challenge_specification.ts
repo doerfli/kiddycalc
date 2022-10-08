@@ -17,9 +17,19 @@ const getRandomNumberElementType = (): NumberElementType => {
     return Math.random() < 0.5 ? NumberElementType.ICONS : NumberElementType.NUMERIC;
 }
 
-export const newChallenge = (): ChallengeSpecification => {
-    const n1 = Math.ceil(Math.random() * 5);
-    const n2 = Math.ceil(Math.random() * 5);
+export const newChallengeAddition = (max: number, allowZero = false): ChallengeSpecification => {
+    let n1;
+
+    do {
+        n1 = Math.floor(Math.random() * max);
+    } while (n1 >= max || (! allowZero && n1 == 0));
+
+    let n2;
+
+    do {
+        n2 = Math.floor(Math.random() * (max));
+    } while (n1 + n2 > max || (! allowZero && n2 == 0));
+
     return {
         number1: n1,
         number2: n2,
@@ -33,3 +43,29 @@ export const newChallenge = (): ChallengeSpecification => {
     };
 }
 
+/* type 1 challenge has a sum of maximum 10 */
+export const newChallengeType1 = (): ChallengeSpecification => {
+    return newChallengeAddition(10);
+}
+
+/* type 2 challenge has a sum of maximum 15 */
+export const newChallengeType2 = (): ChallengeSpecification => {
+    return newChallengeAddition(15);
+}
+
+export const newChallengeType3 = (): ChallengeSpecification => {
+    return newChallengeAddition(20);
+}
+
+export const newChallenge = (level: number): ChallengeSpecification => {
+    switch (level) {
+        case 1:
+            return newChallengeType1();
+        case 2:
+            return newChallengeType2();
+        case 3: 
+            return newChallengeType3();
+        default:
+            return newChallengeType1();
+    }
+}

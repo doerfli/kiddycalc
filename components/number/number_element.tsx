@@ -18,7 +18,11 @@ interface NumberElementProps {
 }
 
 export default function NumberElement(props: NumberElementProps) {
-    const type = props.type || NumberElementType.ICONS;
+    let type = props.type || NumberElementType.ICONS;
+
+    if (props.number == 0 || props.number > 12) {
+        type = NumberElementType.NUMERIC;
+    }
 
     switch (type) {
         case NumberElementType.ICONS:

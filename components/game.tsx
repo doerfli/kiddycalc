@@ -2,7 +2,7 @@ import React, { useReducer, useState }  from "react";
 import dynamic from 'next/dynamic'
 import delay from "../utils/delay";
 import { GameActionKind, GameContext, gameStateReducer } from "../models/game_context";
-import { newGameState } from "../models/game_state";
+import { initialGameState } from "../models/game_state";
 
 const Challenge = dynamic(
     () => import('./challenge'),
@@ -20,10 +20,10 @@ const TimeoutOverlay = dynamic(
 )
 
 export default function Game() {
-    const [ gameState, dispatch ] = useReducer(gameStateReducer, newGameState());
+    const [ gameState, dispatch ] = useReducer(gameStateReducer, initialGameState());
     const [ timerExpired, setTimerExpired ] = useState(false);
     
-    async function challengeSolved() {
+    async function challengeSolved(correct: boolean) {
         console.log("new challenge in 3 seconds");
         await delay(2000);
 
@@ -32,7 +32,7 @@ export default function Game() {
             return;
         }
 
-        dispatch({ type: GameActionKind.NEXT });
+        dispatch({ type: GameActionKind.NEXT, correctOnFirstAttempt: correct });
         console.log("state updated");
     }
 

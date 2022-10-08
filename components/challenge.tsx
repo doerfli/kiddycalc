@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { GameContext } from "../models/game_context";
 import InputBlock from "./input_block";
-import { NumberElementType } from "./number/number_element";
 
 const ResultSelector = dynamic(
     () => import('./result_selector'),
@@ -11,7 +10,7 @@ const ResultSelector = dynamic(
 )
 
 interface ChallengeProps {
-    challengeSolved: () => void;
+    challengeSolved: (correct: boolean) => void;
 }
 
 export default function Challenge(props: ChallengeProps) {

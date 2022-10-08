@@ -15,12 +15,13 @@ export enum GameActionKind  {
 
 export interface GameStateAction {
     type: GameActionKind;
+    correctOnFirstAttempt?: boolean;
 }
 
 export const gameStateReducer = (state: GameState, action: GameStateAction): GameState => {
     switch (action.type) {
         case GameActionKind.NEXT:
-            return newGameState(state.round);
+            return newGameState(state, action.correctOnFirstAttempt || false);
         case GameActionKind.TIME_IS_UP:
             return gameStateWithTimeout(state);
         default:
