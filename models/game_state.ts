@@ -9,15 +9,24 @@ export interface GameState {
     spin: boolean;
 }
 
-export const initialGameState = (): GameState => {
-    return {
+export const initialGameState = (level: number): GameState => {
+    let initialLevel = level;
+
+    if (initialLevel > maxLevel) {
+        initialLevel = maxLevel;
+        console.log(`selected level too high, using max level ${maxLevel}`);
+    }
+
+    const state = {
         round: 1,
         challengesSolvedInFirstAttempt: 0,
-        level: 1,
-        challenge: newChallenge(1),
+        level: initialLevel,
+        challenge: newChallenge(level),
         timeIsUp: false,
         spin: false,
     };
+    console.log(state);
+    return state;
 }
 
 const maxLevel = 3;

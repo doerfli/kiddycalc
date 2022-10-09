@@ -19,8 +19,12 @@ const TimeoutOverlay = dynamic(
     { ssr: false }
 )
 
-export default function Game() {
-    const [ gameState, dispatch ] = useReducer(gameStateReducer, initialGameState());
+interface GameProps {
+    level?: number;
+}
+
+export default function Game(props: GameProps) {
+    const [ gameState, dispatch ] = useReducer(gameStateReducer, initialGameState(props.level || 1));
     const [ timerExpired, setTimerExpired ] = useState(false);
     
     async function challengeSolved(correct: boolean) {
