@@ -23,7 +23,7 @@ const getRandomNumberElementType = (): NumberElementType => {
     return Math.random() < 0.5 ? NumberElementType.ICONS : NumberElementType.NUMERIC;
 }
 
-export const newChallengeAddition = (max: number, allowZero = false): ChallengeSpecification => {
+export const newChallengeAddition = (max: number, allowZero = false, iconsOnly = false): ChallengeSpecification => {
     let n1;
 
     do {
@@ -42,15 +42,15 @@ export const newChallengeAddition = (max: number, allowZero = false): ChallengeS
         operation: Operation.ADDITION,
         result: n1 + n2,
         icon: getRandomIcon(),
-        inputType1: getRandomNumberElementType(),
-        inputType2: getRandomNumberElementType(),
-        resultType1: getRandomNumberElementType(),
-        resultType2: getRandomNumberElementType(),
-        resultType3: getRandomNumberElementType()
+        inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType3: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType()
     };
 }
 
-export const newChallengeSubtraction = (max: number): ChallengeSpecification => {
+export const newChallengeSubtraction = (max: number, iconsOnly = false): ChallengeSpecification => {
     let n1;
 
     do {
@@ -69,30 +69,30 @@ export const newChallengeSubtraction = (max: number): ChallengeSpecification => 
         operation: Operation.SUBTRACTION,
         result: n1 - n2,
         icon: getRandomIcon(),
-        inputType1: getRandomNumberElementType(),
-        inputType2: getRandomNumberElementType(),
-        resultType1: getRandomNumberElementType(),
-        resultType2: getRandomNumberElementType(),
-        resultType3: getRandomNumberElementType()
+        inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
+        resultType3: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType()
     };
 }
 
 /* type 1 challenge has a sum of maximum 10 */
-export const newChallengeType1 = (): ChallengeSpecification => {
-    return newChallengeAddition(10);
+export const newChallengeLevel1 = (): ChallengeSpecification => {
+    return newChallengeAddition(10, false, true);
 }
 
 /* type 2 challenge has a sum of maximum 15 */
-export const newChallengeType2 = (): ChallengeSpecification => {
+export const newChallengeLevel2 = (): ChallengeSpecification => {
     const r = Math.random();
     if (r < 0.2) {
-        return newChallengeSubtraction(10);
+        return newChallengeSubtraction(10, true);
     } else {
         return newChallengeAddition(15);
     }
 }
 
-export const newChallengeType3 = (): ChallengeSpecification => {
+export const newChallengeLevel3 = (): ChallengeSpecification => {
     const r = Math.random();
     if (r < 0.4) {
         return newChallengeSubtraction(15);
@@ -105,12 +105,12 @@ export const newChallengeType3 = (): ChallengeSpecification => {
 export const newChallenge = (level: number): ChallengeSpecification => {
     switch (level) {
         case 1:
-            return newChallengeType1();
+            return newChallengeLevel1();
         case 2:
-            return newChallengeType2();
+            return newChallengeLevel2();
         case 3: 
-            return newChallengeType3();
+            return newChallengeLevel3();
         default:
-            return newChallengeType1();
+            return newChallengeLevel1();
     }
 }

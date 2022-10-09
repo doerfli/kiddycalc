@@ -41,8 +41,12 @@ export const gameStateNextChallenge = (state: GameState, correctOnFirstAttempt: 
     if (state.round % evaluateLevelRounds === 0) {
         if (level < maxLevel && correctAttempts >= minCorrectAnswersForLevelIncrement) {
             level = level + 1;
+            console.log("level increased");
         } else if (level > 1 && correctAttempts <= maxCorrectAnswersForLevelDecrement) {
             level = level - 1;
+            console.log("level decreased");
+        } else {
+            console.log("level did not change");
         }
         correctAttempts = 0;
     }
@@ -63,7 +67,6 @@ export const gameStateSpinStop = (state: GameState): GameState => {
         ...state,
         spin: false
     };
-    console.log(newState);
     return newState;
 }
 
