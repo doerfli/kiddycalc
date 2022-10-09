@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Kiddycalc</title>
+        <title>1 + 1 = 2 | Rechnen lernen für die Kleinsten</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
 

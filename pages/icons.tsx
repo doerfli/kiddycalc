@@ -12,7 +12,7 @@ const Icons: NextPage = () => {
     return (
         <div className="mx-auto container flex min-h-screen flex-col items-center justify-center">
             <Head>
-                <title>Kiddycalc</title>
+                <title>1 + 1 = 2 | Rechnen lernen für die Kleinsten</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
