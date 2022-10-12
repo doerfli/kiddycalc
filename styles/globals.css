@@ -41,7 +41,6 @@
         @apply flex flex-none;
     }
 
-
     .input_block {
         @apply bg-lime-300 border-transparent;
     }
@@ -119,5 +118,19 @@
             @apply invisible shadow-md shadow-transparent !important;
         }    
 
+    }
+
+    .number_entry_selector {
+        .buttons {
+            @apply gap-2 grid grid-cols-5;
+            .number_entry_button {
+                @apply lg:text-5xl md:text-4xl sm:text-2xl;
+                @apply justify-self-center;
+            }
+            /* > .number_entry_button:nth-child(6) {
+                @apply float-left;
+            } */
+
+        }
     }
 }
