@@ -6,7 +6,7 @@ import InputBlock from "./input_block";
 import { Operation } from "../models/challenge_specification";
 
 const ResultSelector = dynamic(
-    () => import('./result_selector'),
+    () => import('./result_selector/result_selector'),
     { ssr: false }
 )
 

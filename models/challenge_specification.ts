@@ -6,6 +6,10 @@ export enum Operation {
     SUBTRACTION
 }
 
+export enum ResultSelectorType {
+    ICONS,
+    NUMBER_ENTRY
+}
 export default interface ChallengeSpecification {
     number1: number;
     number2: number;
@@ -14,6 +18,7 @@ export default interface ChallengeSpecification {
     icon: string;
     inputType1: NumberElementType;
     inputType2: NumberElementType;
+    resultSelector: ResultSelectorType;
     resultType1: NumberElementType;
     resultType2: NumberElementType;
     resultType3: NumberElementType;
@@ -42,6 +47,7 @@ export const newChallengeAddition = (max: number, allowZero = false, iconsOnly =
         operation: Operation.ADDITION,
         result: n1 + n2,
         icon: getRandomIcon(),
+        resultSelector: ResultSelectorType.ICONS,
         inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
@@ -69,6 +75,7 @@ export const newChallengeSubtraction = (max: number, iconsOnly = false): Challen
         operation: Operation.SUBTRACTION,
         result: n1 - n2,
         icon: getRandomIcon(),
+        resultSelector: ResultSelectorType.ICONS,
         inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
