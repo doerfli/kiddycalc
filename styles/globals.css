@@ -38,6 +38,7 @@
         @apply border-2 border-solid rounded-lg;
         @apply lg:border-8;
         @apply text-center;
+        @apply flex flex-none;
     }
 
 

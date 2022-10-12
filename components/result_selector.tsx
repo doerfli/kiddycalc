@@ -99,6 +99,7 @@ export default function ResultSelector(props: ResultChooserProps) {
                 icon={gameState.challenge.icon}
                 number={choices[2]} 
                 colorClass={colorClass3}
+                class="mr-2"
                 onClickHandler={() => validateResult(choices[2], setColorClass3)}
                 />
         </div>
