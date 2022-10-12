@@ -2,6 +2,7 @@ import React, { useContext }  from "react";
 import { GameContext } from "../../models/game_context";
 import { ResultSelectorType } from "../../models/challenge_specification";
 import MultipleChoiceSelector from "./multiple_choice_selector";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ResultSelectorProps {
     onSuccess: (correct: boolean) => void;
@@ -16,7 +17,7 @@ export default function ResultSelector(props: ResultSelectorProps) {
         )
     } else {
         return (
-            "Not implemented"
+            <FontAwesomeIcon icon="fire" className="text-6xl" />
         )
     }
 
