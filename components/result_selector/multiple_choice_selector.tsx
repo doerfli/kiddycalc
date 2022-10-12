@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
-import { GameContext } from "../../models/game_context";
 import NumberElement from "../number/number_element";
-import { GameState } from "../../models/game_state";
 import ChallengeSpecification from "../../models/challenge_specification";
 
 const SUCCESS_ANIMATIONS = [
@@ -60,7 +58,7 @@ export default function MultipleChoiceSelector(props: MultileChoiceSelectorProps
         setTries(0);
     }, [challenge]);
 
-    function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): any {
+    function validateResult(result: number, setColorToIconBlock: (colorClass: string) => void): void {
         const correct = result === challenge.result;
         console.log(correct);
         const newTries = tries + 1;
