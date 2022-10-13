@@ -116,21 +116,88 @@
     
         .result_invisible { 
             @apply invisible shadow-md shadow-transparent !important;
-        }    
-
+        }
     }
 
     .number_entry_selector {
         .buttons {
             @apply gap-2 grid grid-cols-5;
-            .number_entry_button {
+            
+            .entry_button {
                 @apply lg:text-5xl md:text-4xl sm:text-2xl;
                 @apply justify-self-center;
+
+                @apply p-2;
+                @apply md:p-4;
+                @apply lg:p-4;
+                @apply my-1;
+                @apply text-black opacity-90;
+                @apply rounded-lg;
+                
+                @apply shadow-gray-400 shadow-md border-transparent;
+                @apply lg:shadow-gray-400 lg:shadow-lg;
+            }
+            .entry_button.number {
+                @apply bg-yellow-300;
+            }
+            .entry_button.accept {
+                @apply bg-sky-300;
+            }
+            .entry_button.clear {
+                @apply bg-purple-300;
             }
             /* > .number_entry_button:nth-child(6) {
                 @apply float-left;
             } */
+        }
+        .result {
+            @apply grid justify-items-center;
 
+            .guess {
+                @apply inline-block;
+
+                @apply lg:text-5xl md:text-4xl sm:text-2xl tracking-widest;
+
+                @apply p-2;
+                @apply md:p-3;
+                @apply lg:p-3;
+                @apply m-2;
+                @apply text-black opacity-90;
+                @apply border-2 border-gray-800 border-solid rounded-lg;
+            }
+
+            .guess.result_success { 
+                @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
+            }
+    
+            .success_animation_1  > .icon,
+            .success_animation_1  > .number_icon {
+                @apply animate-spin-slow;
+            }
+    
+            .success_animation_2 > .icon,
+            .success_animation_2 > .number_icon {
+                @apply animate-waving;
+            }
+    
+            .success_animation_3 > .icon,
+            .success_animation_3 > .number_icon {
+                @apply animate-bounce;
+            }
+    
+            .success_animation_4 > .icon,
+            .success_animation_4 > .number_icon {
+                @apply animate-jump-spin;
+            }
+    
+            .success_animation_5 > .icon,
+            .success_animation_5 > .number_icon {
+                @apply animate-jump-roll;
+            }
+        
+            .guess.result_fail { 
+                @apply bg-gray-500 border-red-600 shadow-md shadow-transparent !important;
+            }
         }
     }
 }

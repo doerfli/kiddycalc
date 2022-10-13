@@ -2,14 +2,8 @@ import React, { useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
 import NumberElement from "../number/number_element";
 import ChallengeSpecification from "../../models/challenge_specification";
+import { randomSuccessAnimation } from "./result_selector";
 
-const SUCCESS_ANIMATIONS = [
-    "success_animation_1",
-    "success_animation_2",
-    "success_animation_3",
-    "success_animation_4",
-    "success_animation_5",
-];
 
 interface MultileChoiceSelectorProps {
     challenge: ChallengeSpecification;
@@ -35,9 +29,7 @@ const generateResults = (result: number) => {
     return arrayShuffle(results);
 }
 
-const randomSuccessAnimation = () => {
-    return SUCCESS_ANIMATIONS[Math.floor(Math.random() * SUCCESS_ANIMATIONS.length)];
-}
+
 
 export default function MultipleChoiceSelector(props: MultileChoiceSelectorProps) {
     const challenge = props.challenge;

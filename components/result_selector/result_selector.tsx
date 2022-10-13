@@ -9,6 +9,18 @@ interface ResultSelectorProps {
     onSuccess: (correct: boolean) => void;
 }
 
+const SUCCESS_ANIMATIONS = [
+    "success_animation_1",
+    "success_animation_2",
+    "success_animation_3",
+    "success_animation_4",
+    "success_animation_5",
+];
+
+export const randomSuccessAnimation = () => {
+    return SUCCESS_ANIMATIONS[Math.floor(Math.random() * SUCCESS_ANIMATIONS.length)];
+}
+
 export default function ResultSelector(props: ResultSelectorProps) {
     const { gameState } = useContext(GameContext) as GameContext;
 
