@@ -156,42 +156,40 @@
             .guess {
                 @apply inline-block;
 
-                @apply lg:text-5xl md:text-4xl sm:text-2xl tracking-widest;
-
                 @apply p-2;
                 @apply md:p-3;
                 @apply lg:p-3;
                 @apply m-2;
-                @apply text-black opacity-90;
-                @apply border-2 border-gray-800 border-solid rounded-lg;
+                @apply border-yellow-300 border-solid border-4 rounded-lg;
+
+                .number {
+                    @apply lg:text-5xl md:text-4xl sm:text-2xl tracking-widest;
+                    @apply text-black opacity-90;
+                    @apply w-10;
+                }
             }
 
             .guess.result_success { 
                 @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
             }
     
-            .success_animation_1  > .icon,
-            .success_animation_1  > .number_icon {
+            .success_animation_1 .number {
                 @apply animate-spin-slow;
             }
     
-            .success_animation_2 > .icon,
-            .success_animation_2 > .number_icon {
+            .success_animation_2 .number {
                 @apply animate-waving;
             }
     
-            .success_animation_3 > .icon,
-            .success_animation_3 > .number_icon {
+            .success_animation_3 .number {
                 @apply animate-bounce;
             }
     
-            .success_animation_4 > .icon,
-            .success_animation_4 > .number_icon {
+            .success_animation_4 .number {
                 @apply animate-jump-spin;
             }
     
-            .success_animation_5 > .icon,
-            .success_animation_5 > .number_icon {
+            .success_animation_5 .number {
                 @apply animate-jump-roll;
             }
         

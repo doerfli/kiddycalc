@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState }  from "react";
 import ChallengeSpecification from "../../models/challenge_specification";
@@ -11,6 +12,31 @@ interface NumberEntrySelectorProps {
 
 const EMPTY_RESULT = "__";
 
+const getNumberElement = (number: string) => {
+    if (number === EMPTY_RESULT) {
+        return (
+            <span>
+                <FontAwesomeIcon icon="4" className="number invisible" />
+                <FontAwesomeIcon icon="4" className="number invisible" />
+            </span>
+        )
+    } else if ( number.endsWith("_")) {
+        return (
+            <span>
+                <FontAwesomeIcon icon={number.at(0) as IconProp} className="number" />
+                <FontAwesomeIcon icon="4" className="number invisible" />
+            </span>
+        )
+    } else {
+        return (
+            <span>
+                <FontAwesomeIcon icon={number.at(0) as IconProp} className="number" />
+                <FontAwesomeIcon icon={number.at(1) as IconProp} className="number" />
+            </span>
+        )
+    }
+}
+
 export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
     const challenge = props.challenge;
     const [ tries, setTries ] = useState(0);
@@ -19,23 +45,22 @@ export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
     const [ fail, setFail ] = useState(false);
 
     function validateResult(result: number): void {
+        if (fail) {
+            setFail(false);
+            setGuess(EMPTY_RESULT);
+            return;
+        }
+
         const correct = result === challenge.result;
         console.log(correct);
         const newTries = tries + 1;
         setTries(newTries);
         
         if (correct) {
-            // // hide all
-            // setColorClass1("result_invisible");
-            // setColorClass2("result_invisible");
-            // setColorClass3("result_invisible");
-            // // mark correct block as success
-            // setColorToIconBlock("result_success " + randomSuccessAnimation());
             setSuccess(true);
             props.onSuccess(newTries == 1);
         } else {
             setFail(true);
-            // setColorToIconBlock("result_fail");
         }
     }
 
@@ -82,7 +107,7 @@ export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
         <div className="number_entry_selector">
             <div className="result">
                 <div className={guessClass}>
-                    {guess}
+                    {getNumberElement(guess)}
                 </div>
             </div>
             <div className="buttons">

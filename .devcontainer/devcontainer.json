@@ -27,9 +27,10 @@
 				"oderwat.indent-rainbow",
 				"2gua.rainbow-brackets",
 				"johnpapa.vscode-peacock",
-				"vikas.code-navigation",	
+				"vikas.code-navigation",
 				"bradlc.vscode-tailwindcss",
 				"aaron-bond.better-comments",
+				"csstools.postcss"
 			]
 		}
 	},
