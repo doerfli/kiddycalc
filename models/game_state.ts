@@ -25,7 +25,7 @@ export const initialGameState = (level: number): GameState => {
         timeIsUp: false,
         spin: false,
     };
-    console.log(state);
+    // console.log(state);
     return state;
 }
 
