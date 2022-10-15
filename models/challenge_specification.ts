@@ -86,22 +86,22 @@ export const newChallengeSubtraction = (max: number, resultSelectorType: ResultS
 
 /* type 1 challenge has a sum of maximum 10 */
 export const newChallengeLevel1 = (): ChallengeSpecification => {
-    return newChallengeAddition(10, randomResultEntry(0.2), false, true);
+    return newChallengeAddition(10, ResultSelectorType.ICONS, false, true);
 }
 
 /* type 2 challenge has a sum of maximum 15 */
 export const newChallengeLevel2 = (): ChallengeSpecification => {
-    const resultEntry = randomResultEntry(0.4);
+    const resultEntry = randomResultEntry(0.3);
     const r = Math.random();
     if (r < 0.2) {
-        return newChallengeSubtraction(10, resultEntry, true);
+        return newChallengeSubtraction(10, ResultSelectorType.ICONS, true);
     } else {
         return newChallengeAddition(15, resultEntry, false, false);
     }
 }
 
 export const newChallengeLevel3 = (): ChallengeSpecification => {
-    const resultEntry = randomResultEntry(0.6);
+    const resultEntry = randomResultEntry(0.5);
     const r = Math.random();
     if (r < 0.4) {
         return newChallengeSubtraction(15, resultEntry, false);
