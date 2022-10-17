@@ -42,11 +42,16 @@ export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
     const [ tries, setTries ] = useState(0);
     const [ guess, setGuess ] = useState(EMPTY_RESULT);
     const [ success, setSuccess ] = useState(false);
-    const [ fail, setFail ] = useState(false);
+    const [ lastGuessInvalid, setLastGuessInvalid ] = useState(false);
+    const [ entryFailed, setEntryFailed ] = useState(false);
 
     function validateResult(result: number): void {
-        if (fail) {
-            setFail(false);
+        if (success || entryFailed) {
+            return;
+        }
+
+        if (lastGuessInvalid) {
+            setLastGuessInvalid(false);
             setGuess(EMPTY_RESULT);
             return;
         }
@@ -60,19 +65,29 @@ export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
             setSuccess(true);
             props.onSuccess(newTries == 1);
         } else {
-            setFail(true);
+            setLastGuessInvalid(true);
+
+            if (newTries >= 3) {
+                props.onSuccess(false);
+                setEntryFailed(true);
+                let correctGuess = props.challenge.result.toString();
+                if (correctGuess.length == 1) {
+                    correctGuess = correctGuess + "_";
+                }
+                setGuess(correctGuess);
+            }
         }
     }
 
     function numberSelected(number: number) {
-        if (success) {
+        if (success || entryFailed) {
             return;
         }
 
         let currentGuess = guess;
         
-        if (fail) {
-            setFail(false);
+        if (lastGuessInvalid) {
+            setLastGuessInvalid(false);
             currentGuess = EMPTY_RESULT;
         }
 
@@ -86,20 +101,26 @@ export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
     }
 
     function clear(){
+        if (success || entryFailed) {
+            return;
+        }
         setGuess(EMPTY_RESULT);
-        setSuccess(false);
-        setFail(false);
+        setLastGuessInvalid(false);
     }
 
     useEffect(() => {
-        // reset this
-        clear();
+        // reset this component
+        setGuess(EMPTY_RESULT);
+        setSuccess(false);
+        setLastGuessInvalid(false);
+        setTries(0);
+        setEntryFailed(false);
     }, [challenge]);
 
     let guessClass = "guess ";
     if (success) {
         guessClass += "result_success " + randomSuccessAnimation();
-    } else if (fail) {
+    } else if (lastGuessInvalid) {
         guessClass += "result_fail ";
     }
 
