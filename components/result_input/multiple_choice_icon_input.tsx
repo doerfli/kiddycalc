@@ -2,10 +2,10 @@ import React, { useEffect, useState }  from "react";
 import arrayShuffle from 'array-shuffle';
 import NumberElement from "../number/number_element";
 import ChallengeSpecification from "../../models/challenge_specification";
-import { randomSuccessAnimation } from "./result_selector";
+import { randomSuccessAnimation } from "./result_input";
 
 
-interface MultileChoiceSelectorProps {
+interface MultipleChoiceIconInputProps {
     challenge: ChallengeSpecification;
     onSuccess: (correct: boolean) => void;
 }
@@ -31,7 +31,7 @@ const generateResults = (result: number) => {
 
 
 
-export default function MultipleChoiceSelector(props: MultileChoiceSelectorProps) {
+export default function MultipleChoiceIconInput(props: MultipleChoiceIconInputProps) {
     const challenge = props.challenge;
     const [ tries, setTries ] = useState(0);
 

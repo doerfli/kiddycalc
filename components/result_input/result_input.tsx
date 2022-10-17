@@ -1,11 +1,11 @@
 import React, { useContext }  from "react";
 import { GameContext } from "../../models/game_context";
 import { ResultSelectorType } from "../../models/challenge_specification";
-import MultipleChoiceSelector from "./multiple_choice_selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NumberEntrySelector from "./number_entry_selector";
+import MultipleChoiceSelector from "./multiple_choice_icon_input";
+import NumberEntrySelector from "./digit_input";
 
-interface ResultSelectorProps {
+interface ResultInputProps {
     onSuccess: (correct: boolean) => void;
 }
 
@@ -21,7 +21,7 @@ export const randomSuccessAnimation = () => {
     return SUCCESS_ANIMATIONS[Math.floor(Math.random() * SUCCESS_ANIMATIONS.length)];
 }
 
-export default function ResultSelector(props: ResultSelectorProps) {
+export default function ResultInput(props: ResultInputProps) {
     const { gameState } = useContext(GameContext) as GameContext;
 
     if (gameState.challenge.resultSelector == ResultSelectorType.ICONS) {

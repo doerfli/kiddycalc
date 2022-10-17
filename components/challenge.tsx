@@ -5,8 +5,8 @@ import { GameContext } from "../models/game_context";
 import InputBlock from "./input_block";
 import { Operation } from "../models/challenge_specification";
 
-const ResultSelector = dynamic(
-    () => import('./result_selector/result_selector'),
+const ResultInput = dynamic(
+    () => import('./result_input/result_input'),
     { ssr: false }
 )
 
@@ -48,7 +48,7 @@ export default function Challenge(props: ChallengeProps) {
                 <FontAwesomeIcon icon="equals" className="icon_operator" />
             </div>
             <div className="challenge_element">
-                <ResultSelector onSuccess={props.challengeSolved} />
+                <ResultInput onSuccess={props.challengeSolved} />
             </div>
         </div>
     );

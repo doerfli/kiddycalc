@@ -2,10 +2,10 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState }  from "react";
 import ChallengeSpecification from "../../models/challenge_specification";
-import { randomSuccessAnimation } from "./result_selector";
+import { randomSuccessAnimation } from "./result_input";
 
 
-interface NumberEntrySelectorProps {
+interface DigitInputProps {
     challenge: ChallengeSpecification;
     onSuccess: (correct: boolean) => void;
 }
@@ -37,7 +37,7 @@ const getNumberElement = (number: string) => {
     }
 }
 
-export default function NumberEntrySelector(props: NumberEntrySelectorProps) {
+export default function DigitInput(props: DigitInputProps) {
     const challenge = props.challenge;
     const [ tries, setTries ] = useState(0);
     const [ guess, setGuess ] = useState(EMPTY_RESULT);
