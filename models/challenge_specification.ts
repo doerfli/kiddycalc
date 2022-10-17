@@ -6,6 +6,10 @@ export enum Operation {
     SUBTRACTION
 }
 
+export enum ResultSelectorType {
+    ICONS,
+    NUMBER_ENTRY
+}
 export default interface ChallengeSpecification {
     number1: number;
     number2: number;
@@ -14,6 +18,7 @@ export default interface ChallengeSpecification {
     icon: string;
     inputType1: NumberElementType;
     inputType2: NumberElementType;
+    resultSelector: ResultSelectorType;
     resultType1: NumberElementType;
     resultType2: NumberElementType;
     resultType3: NumberElementType;
@@ -23,7 +28,7 @@ const getRandomNumberElementType = (): NumberElementType => {
     return Math.random() < 0.5 ? NumberElementType.ICONS : NumberElementType.NUMERIC;
 }
 
-export const newChallengeAddition = (max: number, allowZero = false, iconsOnly = false): ChallengeSpecification => {
+export const newChallengeAddition = (max: number, resultSelectorType: ResultSelectorType, allowZero: boolean, iconsOnly: boolean): ChallengeSpecification => {
     let n1;
 
     do {
@@ -42,6 +47,7 @@ export const newChallengeAddition = (max: number, allowZero = false, iconsOnly =
         operation: Operation.ADDITION,
         result: n1 + n2,
         icon: getRandomIcon(),
+        resultSelector: resultSelectorType,
         inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
@@ -50,7 +56,7 @@ export const newChallengeAddition = (max: number, allowZero = false, iconsOnly =
     };
 }
 
-export const newChallengeSubtraction = (max: number, iconsOnly = false): ChallengeSpecification => {
+export const newChallengeSubtraction = (max: number, resultSelectorType: ResultSelectorType, iconsOnly: boolean): ChallengeSpecification => {
     let n1;
 
     do {
@@ -69,6 +75,7 @@ export const newChallengeSubtraction = (max: number, iconsOnly = false): Challen
         operation: Operation.SUBTRACTION,
         result: n1 - n2,
         icon: getRandomIcon(),
+        resultSelector: resultSelectorType,
         inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         inputType2: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
         resultType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
@@ -79,26 +86,32 @@ export const newChallengeSubtraction = (max: number, iconsOnly = false): Challen
 
 /* type 1 challenge has a sum of maximum 10 */
 export const newChallengeLevel1 = (): ChallengeSpecification => {
-    return newChallengeAddition(10, false, true);
+    return newChallengeAddition(10, ResultSelectorType.ICONS, false, true);
 }
 
 /* type 2 challenge has a sum of maximum 15 */
 export const newChallengeLevel2 = (): ChallengeSpecification => {
+    const resultEntry = randomResultEntry(0.3);
     const r = Math.random();
     if (r < 0.2) {
-        return newChallengeSubtraction(10, true);
+        return newChallengeSubtraction(10, ResultSelectorType.ICONS, true);
     } else {
-        return newChallengeAddition(15);
+        return newChallengeAddition(15, resultEntry, false, false);
     }
 }
 
 export const newChallengeLevel3 = (): ChallengeSpecification => {
+    const resultEntry = randomResultEntry(0.5);
     const r = Math.random();
     if (r < 0.4) {
-        return newChallengeSubtraction(15);
+        return newChallengeSubtraction(15, resultEntry, false);
     } else {
-        return newChallengeAddition(20, true);
+        return newChallengeAddition(20, resultEntry, true, false);
     }
+}
+
+const randomResultEntry = (max: number): ResultSelectorType => {
+    return (Math.random() < max) ? ResultSelectorType.NUMBER_ENTRY : ResultSelectorType.ICONS;
 }
 
 

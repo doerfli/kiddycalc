@@ -41,7 +41,6 @@
         @apply flex flex-none;
     }
 
-
     .input_block {
         @apply bg-lime-300 border-transparent;
     }
@@ -117,7 +116,86 @@
     
         .result_invisible { 
             @apply invisible shadow-md shadow-transparent !important;
-        }    
+        }
+    }
 
+    .number_entry_selector {
+        .buttons {
+            @apply gap-2 grid grid-cols-5;
+            
+            .entry_button {
+                @apply lg:text-5xl md:text-4xl sm:text-2xl;
+                @apply justify-self-center;
+
+                @apply p-2;
+                @apply md:p-4;
+                @apply lg:p-4;
+                @apply my-1;
+                @apply text-black opacity-90;
+                @apply rounded-lg;
+                
+                @apply shadow-gray-400 shadow-md border-transparent;
+                @apply lg:shadow-gray-400 lg:shadow-lg;
+            }
+            .entry_button.number {
+                @apply bg-yellow-300;
+            }
+            .entry_button.accept {
+                @apply bg-sky-300;
+            }
+            .entry_button.clear {
+                @apply bg-purple-300;
+            }
+            /* > .number_entry_button:nth-child(6) {
+                @apply float-left;
+            } */
+        }
+        .result {
+            @apply grid justify-items-center;
+
+            .guess {
+                @apply inline-block;
+
+                @apply p-2;
+                @apply md:p-3;
+                @apply lg:p-3;
+                @apply m-2;
+                @apply border-yellow-300 border-solid border-4 rounded-lg;
+
+                .number {
+                    @apply lg:text-5xl md:text-4xl sm:text-2xl tracking-widest;
+                    @apply text-black opacity-90;
+                    @apply w-10;
+                }
+            }
+
+            .guess.result_success { 
+                @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
+            }
+    
+            .success_animation_1 .number {
+                @apply animate-spin-slow;
+            }
+    
+            .success_animation_2 .number {
+                @apply animate-waving;
+            }
+    
+            .success_animation_3 .number {
+                @apply animate-bounce;
+            }
+    
+            .success_animation_4 .number {
+                @apply animate-jump-spin;
+            }
+    
+            .success_animation_5 .number {
+                @apply animate-jump-roll;
+            }
+        
+            .guess.result_fail { 
+                @apply bg-gray-500 border-red-600 shadow-md shadow-transparent !important;
+            }
+        }
     }
 }
