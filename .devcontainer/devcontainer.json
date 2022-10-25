@@ -35,6 +35,10 @@
 		}
 	},
 
+	"containerEnv": {
+		"FONTAWESOME_NPM_AUTH_TOKEN": "${localEnv:FONTAWESOME_NPM_AUTH_TOKEN}"
+	},
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [3000],
 

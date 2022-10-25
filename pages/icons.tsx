@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-// import IconList from '../components/icon_list'
 
 const IconList = dynamic(
     () => import('../components/icon_list'),

@@ -8,7 +8,7 @@ function allIcons(): Array<string> {
     return ICONS;
 }
 
-const ICONS: Array<string> = [
+const FREE_ICONS: Array<string> = [
     "car-side",
     "truck",
     "motorcycle",
@@ -49,3 +49,20 @@ const ICONS: Array<string> = [
     "leaf",
     "tree",
 ];
+
+const PRO_ICONS: Array<string> = [
+    // fontawesome pro icons
+    "whale",
+    "narwhal",
+    "dolphin",
+    "sheep",
+    "elephant",
+    "unicorn",
+    "deer-rudolph",
+    "duck",
+    "squirrel",
+    "squid",
+    "bat",
+];
+
+const ICONS = FREE_ICONS.concat(PRO_ICONS);
