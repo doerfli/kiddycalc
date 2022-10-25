@@ -4,8 +4,12 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+ARG FONTAWESOME_NPM_AUTH_TOKEN
+ENV FONTAWESOME_NPM_AUTH_TOKEN=$FONTAWESOME_NPM_AUTH_TOKEN
+
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
+COPY .npmrc ./
 RUN npm ci
 
 
