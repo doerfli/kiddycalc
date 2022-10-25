@@ -7,9 +7,11 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
+import { fad } from '@fortawesome/pro-duotone-svg-icons';
 // import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
+library.add(fad);
 
 function KiddyCalc({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
