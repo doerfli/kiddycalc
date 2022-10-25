@@ -29,4 +29,3 @@ And finally switch the fontawesome pro import in `_app.tsx` to `@fortawesome/fre
 Either run the application via the supplied Docker container. 
 
 Or alternativly you can deploy it manually following the instructions for [deploying Next.js apps](https://nextjs.org/docs/deployment).
-
