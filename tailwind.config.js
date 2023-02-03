@@ -58,11 +58,15 @@ module.exports = {
             },
             colors: {
                 pastel: {
-                    "red": "#ffc09f",
-                    "yellow": "#ffee93",
                     "cream": "#fcf5c7",
-                    "blue": "#a0ced9",
-                    "green": "#adf7b6",
+                    "pink1": "#fdc5f5",
+                    "pink2": "#f7aef8",
+                    "purple": "#b388eb",
+                    "blue": "#8093f1",
+                    "lightblue": "#72ddf7",
+                    "green": "#7bf1a8",
+                    "red": "#f08080",
+                    "grey": "#cddcdf",
                 },
             }
         },

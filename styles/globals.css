@@ -6,7 +6,7 @@
 @layer components { 
 
     .body {
-        @apply bg-slate-800 overflow-hidden;
+        @apply bg-slate-900 overflow-hidden;
     }
 
     .game.timer-expired {
@@ -25,7 +25,7 @@
         @apply p-1 gap-1 grid grid-cols-2;
         @apply md:p-2 md:gap-2;
         @apply lg:p-2 lg:gap-4;
-        @apply text-slate-800 opacity-90;
+        @apply text-slate-900 opacity-90;
         @apply border-2 border-solid rounded-lg;
         @apply lg:border-8;
     }
@@ -34,7 +34,7 @@
         @apply p-2;
         @apply md:p-4;
         @apply lg:p-4;
-        @apply text-black opacity-90;
+        @apply text-slate-900 opacity-90;
         @apply border-2 border-solid rounded-lg;
         @apply lg:border-8;
         @apply text-center;
@@ -42,7 +42,7 @@
     }
 
     .input_block {
-        @apply bg-pastel-green border-transparent;
+        @apply bg-pastel-pink1 border-transparent;
     }
 
     .icon_operator {
@@ -70,7 +70,7 @@
         }
 
         > div:nth-child(1) {
-            @apply bg-pastel-yellow;
+            @apply bg-pastel-purple;
         }
         
         > div:nth-child(2) {
@@ -78,11 +78,11 @@
         }
         
         > div:nth-child(3) {
-            @apply bg-pastel-red;
+            @apply bg-pastel-lightblue;
         }    
 
         .result_success { 
-            @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
+            @apply bg-pastel-green border-pastel-green shadow-md shadow-transparent !important;
         }
 
         .success_animation_1  > .icon,
@@ -111,7 +111,7 @@
         }
     
         .result_fail { 
-            @apply bg-gray-500 border-red-600 shadow-md shadow-transparent !important;
+            @apply bg-pastel-grey border-pastel-red shadow-md shadow-transparent !important;
         }
     
         .result_invisible { 
@@ -170,7 +170,7 @@
             }
 
             .guess.result_success { 
-                @apply bg-green-400 border-green-600 shadow-md shadow-transparent !important;
+                @apply bg-pastel-green border-pastel-green shadow-md shadow-transparent !important;
             }
     
             .success_animation_1 .number {
@@ -194,7 +194,7 @@
             }
         
             .guess.result_fail { 
-                @apply bg-gray-500 border-red-600 shadow-md shadow-transparent !important;
+                @apply bg-pastel-grey border-pastel-red shadow-md shadow-transparent !important;
             }
         }
     }
