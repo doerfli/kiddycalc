@@ -84,36 +84,72 @@ export const newChallengeSubtraction = (max: number, resultSelectorType: ResultS
     };
 }
 
-/* type 1 challenge has a sum of maximum 10 */
+/* add challenge max sum 5 */
 export const newChallengeLevel1 = (): ChallengeSpecification => {
-    return newChallengeAddition(10, ResultSelectorType.ICONS, false, true);
+    return newChallengeAddition(5, ResultSelectorType.ICONS, false, true);
 }
 
-/* type 2 challenge has a sum of maximum 15 */
+/* add challenge max sum 8 */
 export const newChallengeLevel2 = (): ChallengeSpecification => {
+    return newChallengeAddition(8, ResultSelectorType.ICONS, false, true);
+}
+
+/* add challenge max sum 10 */
+export const newChallengeLevel3 = (): ChallengeSpecification => {
+    return newChallengeAddition(10, ResultSelectorType.ICONS, false, false);
+}
+
+/* sub challenge max sum 5 */
+export const newChallengeLevel4 = (): ChallengeSpecification => {
+    return newChallengeSubtraction(5, ResultSelectorType.ICONS, true);
+}
+
+/* add challenge max sum 15 */
+export const newChallengeLevel5 = (): ChallengeSpecification => {
+    return newChallengeAddition(15, ResultSelectorType.ICONS, false, false);
+}
+
+/* sub challenge max sum 8 */
+export const newChallengeLevel6 = (): ChallengeSpecification => {
+    return newChallengeSubtraction(8, ResultSelectorType.ICONS, true);
+}
+
+
+/* type 2 challenge has a sum of maximum 15 */
+export const newChallengeLevel7 = (): ChallengeSpecification => {
     const resultEntry = randomResultEntry(0.3);
     const r = Math.random();
-    if (r < 0.2) {
-        return newChallengeSubtraction(10, ResultSelectorType.ICONS, true);
+    if (r < 0.5) {
+        return newChallengeSubtraction(8, ResultSelectorType.ICONS, false);
     } else {
-        return newChallengeAddition(15, resultEntry, false, false);
+        return newChallengeAddition(15, resultEntry, true, false);
     }
 }
 
-export const newChallengeLevel3 = (): ChallengeSpecification => {
-    const resultEntry = randomResultEntry(0.5);
+/* add challenge max sum 20 */
+export const newChallengeLevel8 = (): ChallengeSpecification => {
+    return newChallengeAddition(20, ResultSelectorType.ICONS, true, false);
+}
+
+/* sub challenge max sum 12 */
+export const newChallengeLevel9 = (): ChallengeSpecification => {
+    return newChallengeSubtraction(12, ResultSelectorType.ICONS, false);
+}
+
+/* type 2 challenge has a sum of maximum 15 */
+export const newChallengeLevel10 = (): ChallengeSpecification => {
+    const resultEntry = randomResultEntry(0.3);
     const r = Math.random();
-    if (r < 0.4) {
-        return newChallengeSubtraction(15, resultEntry, false);
+    if (r < 0.5) {
+        return newChallengeSubtraction(20, ResultSelectorType.ICONS, false);
     } else {
-        return newChallengeAddition(20, resultEntry, true, false);
+        return newChallengeAddition(12, resultEntry, true, false);
     }
 }
 
 const randomResultEntry = (max: number): ResultSelectorType => {
     return (Math.random() < max) ? ResultSelectorType.NUMBER_ENTRY : ResultSelectorType.ICONS;
 }
-
 
 export const newChallenge = (level: number): ChallengeSpecification => {
     switch (level) {
@@ -123,6 +159,20 @@ export const newChallenge = (level: number): ChallengeSpecification => {
             return newChallengeLevel2();
         case 3: 
             return newChallengeLevel3();
+        case 4:
+            return newChallengeLevel4();
+        case 5:
+            return newChallengeLevel5();
+        case 6: 
+            return newChallengeLevel6();
+        case 7:
+            return newChallengeLevel7();
+        case 8:
+            return newChallengeLevel8();
+        case 9: 
+            return newChallengeLevel9();
+        case 10: 
+            return newChallengeLevel10();
         default:
             return newChallengeLevel1();
     }
