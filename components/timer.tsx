@@ -8,7 +8,7 @@ interface TimerProps {
 }
 
 export default function Timer(props: TimerProps) {
-    const [ timerIconColor, setTimerIconColor ] = React.useState("text-neutral-800");
+    const [ timerIconColor, setTimerIconColor ] = React.useState("text-pastel-cream");
     const [ timerExpiration, setTimerExpiration ] = React.useState(0);
     const [ showTimerConfigOverlay, setShowTimerConfigOverlay ] = React.useState(false);
     let intervalTimer: NodeJS.Timer;
@@ -32,22 +32,22 @@ export default function Timer(props: TimerProps) {
         const durationSeconds = minutes * 60;
         const exp = Date.now() + durationSeconds * 1000;
         setTimerExpiration(exp);
-        setTimerIconColor("text-emerald-500");
+        setTimerIconColor("text-pastel-green");
         console.log(`timer set to expire at ${exp}s`);
         
         intervalTimer = setInterval(() => {
             const timeRemaining = (exp - Date.now()) / 1000;
             console.log(`timeRemaining: ${timeRemaining}`);
             if (timeRemaining <= 0) {
-                setTimerIconColor("text-red-500 animate-ping");
+                setTimerIconColor("text-pastel-red animate-ping");
                 clearInterval(intervalTimer);
                 props.onTimerExpired();
             } else if (timeRemaining < 15) {
-                setTimerIconColor("text-red-500 animate-pulse");
+                setTimerIconColor("text-pastel-red animate-pulse");
             } else if (timeRemaining < 30) {
-                setTimerIconColor("text-red-500");
+                setTimerIconColor("text-pastel-red");
             } else if (timeRemaining < 45) {
-                setTimerIconColor("text-yellow-500");
+                setTimerIconColor("text-pastel-yellow");
             }
         }, 1000);
     }
@@ -60,7 +60,7 @@ export default function Timer(props: TimerProps) {
 
     return (
         <div>
-            <div className="absolute right-0 top-0 z-5">
+            <div className="absolute right-0 top-0 z-5 text-pastel-cream">
                 <FontAwesomeIcon icon="stopwatch" className={timerClass} onClick={configureTimer}/>
             </div>
             <TimerConfig show={showTimerConfigOverlay} engageTimer={engageTimer}/>

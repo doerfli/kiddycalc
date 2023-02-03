@@ -19,9 +19,9 @@ export default function TimeoutOverlay(props: TimeoutOverlayProps) {
             <div className={cls}>
                 <div className="absolute inset-0 flex">
                     <div className="w-60 h-60 m-auto align-middle">
-                        <div className="h-full w-full flex bg-red-100 rounded-xl">
+                        <div className="h-full w-full flex bg-pastel-red rounded-xl">
                             <span className="m-auto align-middle">
-                                <FontAwesomeIcon icon="hand" className="fa-fw p-4 text-9xl text-red-600" />
+                                <FontAwesomeIcon icon="hand" className="fa-fw p-4 text-9xl text-pastel-lightblue" />
                             </span>
                         </div>
                     </div>
