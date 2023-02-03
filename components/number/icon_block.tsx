@@ -1,6 +1,6 @@
 import React  from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { IconPrefix, IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface IconBlockProps {
     icon: string;
@@ -23,7 +23,7 @@ export default function IconBlock(props: IconBlockProps) {
     return (
         <div className={cls} onClick={props.onClickHandler}>
             {[...Array(props.number)].map((_, i) =>
-                <FontAwesomeIcon key={i} icon={props.icon as IconProp} className="icon fa-fw" />
+                <FontAwesomeIcon key={i} icon={['fa-duotone' as IconPrefix, props.icon] as IconProp} className="icon fa-fw" />
             )}
         </div>
     );

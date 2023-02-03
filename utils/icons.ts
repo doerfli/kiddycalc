@@ -8,13 +8,13 @@ function allIcons(): Array<string> {
     return ICONS;
 }
 
-const FREE_ICONS: Array<string> = [
+const ICONS: Array<string> = [
+    "heart",
     "car-side",
     "truck",
     "motorcycle",
     "bicycle",
     "truck-medical",
-    "helicopter",
     "sailboat",
     "paper-plane",
     "plane",
@@ -23,8 +23,6 @@ const FREE_ICONS: Array<string> = [
     "dragon",
     "otter",
     "kiwi-bird",
-    "spider",
-    "shrimp",
     "mosquito",
     "horse",
     "frog",
@@ -32,7 +30,6 @@ const FREE_ICONS: Array<string> = [
     "crow",
     "cow",
     "cat",
-    "bug",
     "egg",
     "moon",
     "cloud",
@@ -48,10 +45,10 @@ const FREE_ICONS: Array<string> = [
     "lightbulb",
     "leaf",
     "tree",
-];
-
-const PRO_ICONS: Array<string> = [
-    // fontawesome pro icons
+    "hat-wizard",
+    "mouse-field",
+    "flag-pennant",
+    "feather", 
     "whale",
     "narwhal",
     "dolphin",
@@ -65,4 +62,3 @@ const PRO_ICONS: Array<string> = [
     "bat",
 ];
 
-const ICONS = FREE_ICONS.concat(PRO_ICONS);
