@@ -20,7 +20,7 @@ interface NumberElementProps {
 export default function NumberElement(props: NumberElementProps) {
     let type = props.type || NumberElementType.ICONS;
 
-    if (props.number == 0 || props.number > 12) {
+    if (props.number == 0 || props.number > 9) {
         type = NumberElementType.NUMERIC;
     }
 

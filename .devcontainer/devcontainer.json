@@ -43,12 +43,16 @@
 	"forwardPorts": [3000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm install",
+	"postCreateCommand": "sudo chown node node_modules && npm install",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node",
 	"features": {
-		"docker-from-docker": "latest",
-		"github-cli": "latest"
-	}
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+		// "github-cli": "latest"
+	},
+
+	"mounts": [
+		"source=einspluseins-node_modules,target=/workspaces/einspluseins/node_modules,type=volume"
+	],
 }
