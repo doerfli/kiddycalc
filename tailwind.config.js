@@ -56,6 +56,15 @@ module.exports = {
                 'spin-out-in': 'spin-out-in 1.5s linear',
                 'spin-in': 'spin-out-in 600ms linear',
             },
+            colors: {
+                pastel: {
+                    "red": "#ffc09f",
+                    "yellow": "#ffee93",
+                    "cream": "#fcf5c7",
+                    "blue": "#a0ced9",
+                    "green": "#adf7b6",
+                },
+            }
         },
     },
     plugins: [],

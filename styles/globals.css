@@ -6,7 +6,7 @@
 @layer components { 
 
     .body {
-        @apply bg-neutral-50 overflow-hidden;
+        @apply bg-slate-800 overflow-hidden;
     }
 
     .game.timer-expired {
@@ -25,7 +25,7 @@
         @apply p-1 gap-1 grid grid-cols-2;
         @apply md:p-2 md:gap-2;
         @apply lg:p-2 lg:gap-4;
-        @apply text-black opacity-90;
+        @apply text-slate-800 opacity-90;
         @apply border-2 border-solid rounded-lg;
         @apply lg:border-8;
     }
@@ -42,11 +42,11 @@
     }
 
     .input_block {
-        @apply bg-lime-300 border-transparent;
+        @apply bg-pastel-green border-transparent;
     }
 
     .icon_operator {
-        @apply text-xl;
+        @apply text-xl text-pastel-cream;
         @apply md:text-3xl;
         @apply lg:text-4xl;
     }
@@ -65,20 +65,20 @@
         @apply lg:gap-2;
 
         > div {
-            @apply shadow-gray-400 shadow-md border-transparent;
-            @apply lg:shadow-gray-400 lg:shadow-lg;
+            @apply shadow-slate-600 shadow-md border-transparent;
+            @apply lg:shadow-slate-600 lg:shadow-lg;
         }
 
         > div:nth-child(1) {
-            @apply bg-yellow-300;
+            @apply bg-pastel-yellow;
         }
         
         > div:nth-child(2) {
-            @apply bg-sky-300;
+            @apply bg-pastel-blue;
         }
         
         > div:nth-child(3) {
-            @apply bg-purple-300;
+            @apply bg-pastel-red;
         }    
 
         .result_success { 
