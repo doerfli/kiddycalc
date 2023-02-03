@@ -96,7 +96,8 @@ export const newChallengeLevel2 = (): ChallengeSpecification => {
 
 /* add challenge max sum 10 */
 export const newChallengeLevel3 = (): ChallengeSpecification => {
-    return newChallengeAddition(10, ResultSelectorType.ICONS, false, false);
+    const resultEntry = randomResultEntry(0.1);
+    return newChallengeAddition(10, resultEntry, false, false);
 }
 
 /* sub challenge max sum 5 */
@@ -106,21 +107,23 @@ export const newChallengeLevel4 = (): ChallengeSpecification => {
 
 /* add challenge max sum 15 */
 export const newChallengeLevel5 = (): ChallengeSpecification => {
-    return newChallengeAddition(15, ResultSelectorType.ICONS, false, false);
+    const resultEntry = randomResultEntry(0.2);
+    return newChallengeAddition(15, resultEntry, false, false);
 }
 
 /* sub challenge max sum 8 */
 export const newChallengeLevel6 = (): ChallengeSpecification => {
-    return newChallengeSubtraction(8, ResultSelectorType.ICONS, true);
+    const resultEntry = randomResultEntry(0.1);
+    return newChallengeSubtraction(8, resultEntry, true);
 }
 
 
 /* type 2 challenge has a sum of maximum 15 */
 export const newChallengeLevel7 = (): ChallengeSpecification => {
-    const resultEntry = randomResultEntry(0.3);
+    const resultEntry = randomResultEntry(0.5);
     const r = Math.random();
     if (r < 0.5) {
-        return newChallengeSubtraction(8, ResultSelectorType.ICONS, false);
+        return newChallengeSubtraction(8, resultEntry, false);
     } else {
         return newChallengeAddition(15, resultEntry, true, false);
     }
@@ -128,20 +131,21 @@ export const newChallengeLevel7 = (): ChallengeSpecification => {
 
 /* add challenge max sum 20 */
 export const newChallengeLevel8 = (): ChallengeSpecification => {
-    return newChallengeAddition(20, ResultSelectorType.ICONS, true, false);
+    const resultEntry = randomResultEntry(0.6);
+    return newChallengeAddition(20, resultEntry, true, false);
 }
 
 /* sub challenge max sum 12 */
 export const newChallengeLevel9 = (): ChallengeSpecification => {
-    return newChallengeSubtraction(12, ResultSelectorType.ICONS, false);
+    const resultEntry = randomResultEntry(0.6);
+    return newChallengeSubtraction(12, resultEntry, false);
 }
 
-/* type 2 challenge has a sum of maximum 15 */
 export const newChallengeLevel10 = (): ChallengeSpecification => {
-    const resultEntry = randomResultEntry(0.3);
+    const resultEntry = randomResultEntry(0.7);
     const r = Math.random();
     if (r < 0.5) {
-        return newChallengeSubtraction(20, ResultSelectorType.ICONS, false);
+        return newChallengeSubtraction(20, resultEntry, false);
     } else {
         return newChallengeAddition(12, resultEntry, true, false);
     }
