@@ -1,19 +1,24 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 
 import Game from '../../components/game';
+import { setLevel } from '../../redux/slices/game';
 
 const Level: NextPage = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
 
     let game = (<div></div>);
 
     if (router.isReady) {
         const levelStr = router.query.level;
         console.log(levelStr);
-        const level = parseInt(levelStr as string);
-        game = (<Game level={level} />)
+        setTimeout(() => {
+            dispatch(setLevel(parseInt(levelStr as string)));
+        }, 10);
+        game = (<Game />)
     }
 
     return (

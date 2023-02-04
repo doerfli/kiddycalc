@@ -1,9 +1,10 @@
 import React, { useContext }  from "react";
-import { GameContext } from "../../models/game_context";
 import { ResultSelectorType } from "../../models/challenge_specification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MultipleChoiceSelector from "./multiple_choice_icon_input";
 import NumberEntrySelector from "./digit_input";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface ResultInputProps {
     onSuccess: (correct: boolean) => void;
@@ -22,15 +23,15 @@ export const randomSuccessAnimation = () => {
 }
 
 export default function ResultInput(props: ResultInputProps) {
-    const { gameState } = useContext(GameContext) as GameContext;
+    const challenge = useSelector((state: RootState) => state.game.challenge);
 
-    if (gameState.challenge.resultSelector == ResultSelectorType.ICONS) {
+    if (challenge.resultSelector == ResultSelectorType.ICONS) {
         return (
-            <MultipleChoiceSelector challenge={gameState.challenge} onSuccess={props.onSuccess} />
+            <MultipleChoiceSelector challenge={challenge} onSuccess={props.onSuccess} />
         )
-    } else if (gameState.challenge.resultSelector == ResultSelectorType.NUMBER_ENTRY) {
+    } else if (challenge.resultSelector == ResultSelectorType.NUMBER_ENTRY) {
         return (
-            <NumberEntrySelector challenge={gameState.challenge} onSuccess={props.onSuccess} />
+            <NumberEntrySelector challenge={challenge} onSuccess={props.onSuccess} />
         )
     } else {
         return (

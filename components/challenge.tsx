@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import dynamic from 'next/dynamic'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { GameContext } from "../models/game_context";
 import InputBlock from "./input_block";
 import { Operation } from "../models/challenge_specification";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const ResultInput = dynamic(
     () => import('./result_input/result_input'),
@@ -15,11 +16,11 @@ interface ChallengeProps {
 }
 
 export default function Challenge(props: ChallengeProps) {
-    const { gameState } = useContext(GameContext) as GameContext;
+    const challenge = useSelector((state: RootState) => state.game.challenge);
     
     let operator;
 
-    switch (gameState.challenge.operation) {
+    switch (challenge.operation) {
         case Operation.ADDITION:
             operator = (<FontAwesomeIcon icon="plus" className="icon_operator" />);
             break;
@@ -36,13 +37,13 @@ export default function Challenge(props: ChallengeProps) {
     return (
         <div className="challenge">
             <div className="challenge_element">
-                <InputBlock number={gameState.challenge.number1} icon={gameState.challenge.icon} type={gameState.challenge.inputType1} />
+                <InputBlock number={challenge.number1} icon={challenge.icon} type={challenge.inputType1} />
             </div>
             <div className="challenge_element">
                 {operator}
             </div>
             <div className="challenge_element">
-                <InputBlock number={gameState.challenge.number2} icon={gameState.challenge.icon} type={gameState.challenge.inputType2} />
+                <InputBlock number={challenge.number2} icon={challenge.icon} type={challenge.inputType2} />
             </div>
             <div className="challenge_element">
                 <FontAwesomeIcon icon="equals" className="icon_operator" />

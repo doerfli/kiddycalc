@@ -1,8 +1,9 @@
-import React, { useReducer, useState }  from "react";
+import React  from "react";
 import dynamic from 'next/dynamic'
 import delay from "../utils/delay";
-import { GameActionKind, GameContext, gameStateReducer } from "../models/game_context";
-import { initialGameState } from "../models/game_state";
+import { useDispatch, useSelector } from "react-redux";
+import { nextChallenge, spinStart, spinStop, timeIsUp } from "../redux/slices/game";
+import { RootState } from "../redux/store";
 
 const Challenge = dynamic(
     () => import('./challenge'),
@@ -19,61 +20,59 @@ const TimeoutOverlay = dynamic(
     { ssr: false }
 )
 
-interface GameProps {
-    level?: number;
-}
-
-export default function Game(props: GameProps) {
-    const [ gameState, dispatch ] = useReducer(gameStateReducer, initialGameState(props.level || 1));
-    const [ timerExpired, setTimerExpired ] = useState(false);
+export default function Game() {
+    const dispatch  = useDispatch();
+    const spin = useSelector((state: RootState) => state.game.spin);
+    const timerExpired = useSelector((state: RootState) => state.game.timerExpired);
+    const [ showTimerExpired, setShowTimerExpired ] = React.useState(false);
     
+    console.log("render game");
+
     async function challengeSolved(correct: boolean) {
         console.log("new challenge in 2 seconds");
         await delay(2000);
 
-        dispatch({ type: GameActionKind.SPIN_START });
+        dispatch(spinStart());
         console.log("spin starting");
 
         await delay(650);
         // now the challange is gone (animation takes 600ms to hide challenge)
         
         if (timerExpired) {
-            dispatch({ type: GameActionKind.TIME_IS_UP });
+            setShowTimerExpired(true);
         } else {
-            dispatch({ type: GameActionKind.NEXT_CHALLENGE, correctOnFirstAttempt: correct });
+            dispatch(nextChallenge(correct));
         }
 
         await delay(850);
         // remove spin class after spin finished
-        dispatch({ type: GameActionKind.SPIN_STOP });
+        dispatch(spinStop());
     }
 
     function onTimerExpired() {
-        setTimerExpired(true);
+        dispatch(timeIsUp());
     }
 
     let gameClass = " "
 
-    if (gameState.spin) {
+    if (spin) {
         gameClass += "animate-spin-out-in ";
     }
 
     let challengeClass = "game "
 
-    if (gameState.timeIsUp) {
+    if (showTimerExpired) {
         challengeClass += "timer-expired ";
     }
 
 
     return (
-        <GameContext.Provider value={{ gameState, dispatch }}>
-            <div className={gameClass}>
-                <div className={challengeClass}>
-                    <Challenge challengeSolved={challengeSolved}/>
-                </div>
-                <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={gameState.timeIsUp} />
-                <TimeoutOverlay show={gameState.timeIsUp}/>
+        <div className={gameClass}>
+            <div className={challengeClass}>
+                <Challenge challengeSolved={challengeSolved}/>
             </div>
-        </GameContext.Provider>
+            <Timer onTimerExpired={onTimerExpired} timeoutOverlayActive={timerExpired} />
+            <TimeoutOverlay show={showTimerExpired}/>
+        </div>
     );
 }

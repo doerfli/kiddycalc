@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Game from '../components/game';
 
 const Home: NextPage = () => {
+  console.log("game page");
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
