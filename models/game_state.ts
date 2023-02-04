@@ -29,7 +29,7 @@ export const initialGameState = (level: number): GameState => {
     return state;
 }
 
-const maxLevel = 3;
+const maxLevel = 10;
 const evaluateLevelRounds = 8;
 const minCorrectAnswersForLevelIncrement = 5;
 const maxCorrectAnswersForLevelDecrement = 2;
