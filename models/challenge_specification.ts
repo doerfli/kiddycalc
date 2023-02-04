@@ -29,17 +29,20 @@ const getRandomNumberElementType = (): NumberElementType => {
 }
 
 export const newChallengeAddition = (max: number, resultSelectorType: ResultSelectorType, allowZero: boolean, iconsOnly: boolean): ChallengeSpecification => {
+    let r = 0;
+
+    do {
+        r = Math.round(Math.random() * max);
+    } while (! isValidResult(r, allowZero));
+
+
     let n1;
 
     do {
-        n1 = Math.floor(Math.random() * max);
-    } while (n1 >= max || (! allowZero && n1 == 0));
+        n1 = Math.round(Math.random() * r);
+    } while (! isValidN1(n1, r, allowZero));
 
-    let n2;
-
-    do {
-        n2 = Math.floor(Math.random() * max);
-    } while (n1 + n2 > max || (! allowZero && n2 == 0));
+    const n2 = r - n1;
 
     return {
         number1: n1,
@@ -56,24 +59,44 @@ export const newChallengeAddition = (max: number, resultSelectorType: ResultSele
     };
 }
 
-export const newChallengeSubtraction = (max: number, resultSelectorType: ResultSelectorType, iconsOnly: boolean): ChallengeSpecification => {
+function isValidResult(r: number, allowZero: boolean): boolean {
+    if (allowZero) {
+        return true;
+    }
+
+    return r >= 2;
+}
+
+function isValidN1(n1: number, r: number, allowZero: boolean): boolean {
+    if (allowZero) {
+        return true;
+    }
+
+    return n1 > 0 && n1 < r;
+}
+
+export const newChallengeSubtraction = (max: number, resultSelectorType: ResultSelectorType, allowZero: boolean, iconsOnly: boolean): ChallengeSpecification => {
+    let r = 0;
+
+    do {
+        r = Math.round(Math.random() * max);
+    } while (! isValidResult(r, allowZero));
+
+
     let n1;
 
     do {
-        n1 = Math.floor(Math.random() * max);
-    } while (n1 <= 2 || n1 > max); // allow 1 < n1 < max
+        n1 = Math.round(Math.random() * r);
+    } while (! isValidN1(n1, r, allowZero));
 
-    let n2;
+    const n2 = r - n1;
 
-    do {
-        n2 = Math.floor(Math.random() * max);
-    } while (n2 < 1 || n2 >= n1);
 
     return {
-        number1: n1,
-        number2: n2,
+        number1: r,
+        number2: n1,
         operation: Operation.SUBTRACTION,
-        result: n1 - n2,
+        result: n2,
         icon: getRandomIcon(),
         resultSelector: resultSelectorType,
         inputType1: iconsOnly ? NumberElementType.ICONS : getRandomNumberElementType(),
@@ -102,7 +125,7 @@ export const newChallengeLevel3 = (): ChallengeSpecification => {
 
 /* sub challenge max sum 5 */
 export const newChallengeLevel4 = (): ChallengeSpecification => {
-    return newChallengeSubtraction(5, ResultSelectorType.ICONS, true);
+    return newChallengeSubtraction(5, ResultSelectorType.ICONS, false, true);
 }
 
 /* add challenge max sum 15 */
@@ -114,7 +137,7 @@ export const newChallengeLevel5 = (): ChallengeSpecification => {
 /* sub challenge max sum 8 */
 export const newChallengeLevel6 = (): ChallengeSpecification => {
     const resultEntry = randomResultEntry(0.1);
-    return newChallengeSubtraction(8, resultEntry, true);
+    return newChallengeSubtraction(8, resultEntry, false, true);
 }
 
 
@@ -123,7 +146,7 @@ export const newChallengeLevel7 = (): ChallengeSpecification => {
     const resultEntry = randomResultEntry(0.5);
     const r = Math.random();
     if (r < 0.5) {
-        return newChallengeSubtraction(8, resultEntry, false);
+        return newChallengeSubtraction(8, resultEntry, true, false);
     } else {
         return newChallengeAddition(15, resultEntry, true, false);
     }
@@ -138,14 +161,14 @@ export const newChallengeLevel8 = (): ChallengeSpecification => {
 /* sub challenge max sum 12 */
 export const newChallengeLevel9 = (): ChallengeSpecification => {
     const resultEntry = randomResultEntry(0.6);
-    return newChallengeSubtraction(12, resultEntry, false);
+    return newChallengeSubtraction(12, resultEntry, true, false);
 }
 
 export const newChallengeLevel10 = (): ChallengeSpecification => {
     const resultEntry = randomResultEntry(0.7);
     const r = Math.random();
     if (r < 0.5) {
-        return newChallengeSubtraction(20, resultEntry, false);
+        return newChallengeSubtraction(20, resultEntry, true, false);
     } else {
         return newChallengeAddition(12, resultEntry, true, false);
     }
