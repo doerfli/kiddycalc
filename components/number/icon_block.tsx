@@ -7,7 +7,7 @@ interface IconBlockProps {
     colorClass: string;
     number: number;
     class?: string;
-    onClickHandler?: any;
+    onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function IconBlock(props: IconBlockProps) {

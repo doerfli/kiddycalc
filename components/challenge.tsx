@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import dynamic from 'next/dynamic'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import InputBlock from "./input_block";
-import { Operation } from "../models/challenge_specification";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import dynamic from 'next/dynamic';
 import { useSelector } from "react-redux";
+import { Operation } from "../models/challenge_specification";
 import { RootState } from "../redux/store";
+import InputBlock from "./input_block";
 
 const ResultInput = dynamic(
     () => import('./result_input/result_input'),

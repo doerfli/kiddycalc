@@ -14,7 +14,7 @@ interface NumberElementProps {
     icon: string;
     colorClass: string;
     class?: string;
-    onClickHandler?: any;
+    onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function NumberElement(props: NumberElementProps) {

@@ -1,10 +1,9 @@
-import React, { useContext }  from "react";
-import { ResultSelectorType } from "../../models/challenge_specification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MultipleChoiceSelector from "./multiple_choice_icon_input";
-import NumberEntrySelector from "./digit_input";
 import { useSelector } from "react-redux";
+import { ResultSelectorType } from "../../models/challenge_specification";
 import { RootState } from "../../redux/store";
+import NumberEntrySelector from "./digit_input";
+import MultipleChoiceSelector from "./multiple_choice_icon_input";
 
 interface ResultInputProps {
     onSuccess: (correct: boolean) => void;
