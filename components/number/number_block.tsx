@@ -6,7 +6,7 @@ interface NumberBlockProps {
     colorClass: string;
     number: number;
     class?: string;
-    onClickHandler?: any;
+    onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function NumberBlock(props: NumberBlockProps) {

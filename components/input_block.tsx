@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import NumberElement, { NumberElementType } from "./number/number_element";
 
 interface NumberBlockProps {
@@ -6,7 +6,7 @@ interface NumberBlockProps {
     number: number;
     icon: string;
     class?: string;
-    onClickHandler?: any;
+    onClickHandler?: () => React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function InputBlock(props: NumberBlockProps) {
