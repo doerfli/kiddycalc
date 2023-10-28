@@ -11,7 +11,7 @@ export default function Timer(props: TimerProps) {
     const [ timerIconColor, setTimerIconColor ] = React.useState("text-pastel-cream");
     const [ timerExpiration, setTimerExpiration ] = React.useState(0);
     const [ showTimerConfigOverlay, setShowTimerConfigOverlay ] = React.useState(false);
-    let intervalTimer: NodeJS.Timer;
+    let intervalTimer: NodeJS.Timeout;
 
     const configureTimer = () => {
         if (timerExpiration > 0) {
@@ -50,6 +50,7 @@ export default function Timer(props: TimerProps) {
                 setTimerIconColor("text-pastel-yellow");
             }
         }, 1000);
+
     }
 
     let timerClass = `fa-fw p-4 text-3xl ${timerIconColor} `;
