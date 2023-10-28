@@ -15,7 +15,7 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u doerfli --password-stdin
       - uses: rlespinasse/github-slug-action@v2.x
       - run: docker build -f Dockerfile -t docker.pkg.github.com/doerfli/kiddycalc/kiddycalc:${{ env.GITHUB_REF_SLUG }} --build-arg FONTAWESOME_NPM_AUTH_TOKEN=${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }} .
